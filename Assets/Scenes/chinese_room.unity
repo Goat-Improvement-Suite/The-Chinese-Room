@@ -2492,6 +2492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hinge: {fileID: 444620609}
+  openAngle: 80
 --- !u!61 &899116613
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4707,6 +4708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hinge: {fileID: 1823002882}
+  openAngle: 80
 --- !u!1 &1482516224
 GameObject:
   m_ObjectHideFlags: 0
