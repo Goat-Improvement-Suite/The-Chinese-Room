@@ -21,6 +21,7 @@ public class CharacterItemInteraction : Interaction {
     protected ItemInteraction holding;
 
     private Interaction hotInteraction;
+    private Color savedInteractionSpriteColor; // Placeholder
 
     private CharacterMovement movement;
 
@@ -73,14 +74,14 @@ public class CharacterItemInteraction : Interaction {
 
             // Clear previous hot interaction
             Interaction nextHotInteraction = (collider ? collider.GetComponent<Interaction>() : null);
-            if (hotInteraction && hotInteraction != nextHotInteraction && hotInteraction.GetComponent<SpriteRenderer>()) {
-                hotInteraction.GetComponent<SpriteRenderer>().color = Color.white;
+            if (hotInteraction && hotInteraction != nextHotInteraction) {
+                hotInteraction.Unhighlight();
             }
 
             // Set and handle hot interaction
             hotInteraction = nextHotInteraction;
             if (hotInteraction && hotInteraction.GetComponent<SpriteRenderer>()) {
-                hotInteraction.GetComponent<SpriteRenderer>().color = Color.black;
+                hotInteraction.Highlight();
             }
 
             if (collider) {
