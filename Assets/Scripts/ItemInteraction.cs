@@ -10,15 +10,27 @@ public class ItemInteraction : Interaction {
     [SerializeField] internal bool yellow = false;
     internal GameObject heldBy;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private SpriteRenderer outlineSpriteRenderer;
+
+    void Start() {
+        var outlineObject = transform.Find("Outline");
+        if (outlineObject) {
+            outlineSpriteRenderer = outlineObject.GetComponent<SpriteRenderer>();
+        }
+   	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update () {	
 	}
+
+    protected override void Awake() { }
+
+    public override void Highlight() {
+        outlineSpriteRenderer.enabled = true;
+    }
+
+    public override void Unhighlight() {
+        outlineSpriteRenderer.enabled = false;
+    }
 
     public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
         return (heldBy == null && character != null);
