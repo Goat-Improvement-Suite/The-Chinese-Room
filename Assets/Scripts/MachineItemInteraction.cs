@@ -10,13 +10,10 @@ public class MachineItemInteraction : MonoBehaviour {
     private int pushCount;
     private const int COUNT_LIMIT = 20;
 
-    // Use this for initialization
-	void Start () {
-		
+    void Start () {		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         if (currentItem != null) {
             if (Input.GetButtonDown("Interact_" + currentPlayer.playerNo)) {
                 pushCount++;
@@ -28,7 +25,7 @@ public class MachineItemInteraction : MonoBehaviour {
 	}
 
     internal bool StartProcessingItem(CharacterItemInteraction playerCII, ItemInteraction item) {
-        if (playerCII.color == color) {
+        if (playerCII.color == color && !item.processed) {
             if (item != null) {
                 currentItem = item;
                 currentPlayer = playerCII;
@@ -41,6 +38,7 @@ public class MachineItemInteraction : MonoBehaviour {
 
     private void complete() {
         //add color
+        currentItem.MarkAsProcessedBy(this);
         currentPlayer.ProcessingComplete(currentItem);
         currentPlayer = null;
         currentItem = null;

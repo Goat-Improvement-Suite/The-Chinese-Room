@@ -34,19 +34,19 @@ public class CharacterItemInteraction : MonoBehaviour {
     }
 
 	void Update () {
+        //Debug.DrawLine(transform.position, transform.position + new Vector3(0, interactionRadius, 0));
         if (!interactingWith) {
             if (holding) {
                 // Check for interaction with: Player, Machine, Desk, Hole or Bin
                 if (Input.GetButtonDown("Interact_" + playerNo)) {
                     Collider2D collider = null;
                     if ((collider = Physics2D.OverlapCircle(transform.position, interactionRadius, playerLayerMask)) &&
-                        collider.gameObject.GetComponent<CharacterItemInteraction>().GiveItem(this, holding))
+                        collider.gameObject.GetComponent<CharacterItemInteraction>().ReceiveItem(this, holding))
                     {
                         holding = null;
                     } else if ((collider = Physics2D.OverlapCircle(transform.position, interactionRadius, machineLayerMask)) &&
                                collider.gameObject.GetComponent<MachineItemInteraction>().StartProcessingItem(this, holding))
                     {
-                        Debug.Log("Pressed!");
                         holding = null;
                         interactingWith = collider.gameObject;
                         movement.StartIgnoringInput();
@@ -71,10 +71,10 @@ public class CharacterItemInteraction : MonoBehaviour {
                 if (Input.GetButtonDown("Interact_" + playerNo)) {
                     Collider2D collider = null;
                     if ((collider = Physics2D.OverlapCircle(transform.position, interactionRadius, itemLayerMask)) &&
-                        (collider.gameObject.GetComponent<ItemInteraction>().heldBy == null))
+                        collider.gameObject.GetComponent<ItemInteraction>().CanBePickedUpBy(gameObject))
                     {
                         holding = collider.gameObject.GetComponent<ItemInteraction>();
-                        holding.heldBy = this.gameObject;
+                        holding.MarkAsHeldBy(gameObject);
                         collider.transform.parent = transform;
                     }
                 }
@@ -98,9 +98,10 @@ public class CharacterItemInteraction : MonoBehaviour {
         }
     }
 
-    internal bool GiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
+    internal bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
         if (!holding) {
             holding = itemInteraction;
+            holding.transform.parent = transform;
             return true;
         }
         return false;

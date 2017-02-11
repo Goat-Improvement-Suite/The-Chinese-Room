@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 1010621605}
   - component: {fileID: 1010621609}
   - component: {fileID: 1010621610}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Player_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7b8f1a076b0504ba99c908fad23b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRadius: 1
+  interactionRadius: 0.5
 --- !u!1001 &1030666976
 Prefab:
   m_ObjectHideFlags: 0
@@ -364,7 +364,8 @@ GameObject:
   - component: {fileID: 1383459039}
   - component: {fileID: 1383459038}
   - component: {fileID: 1383459037}
-  m_Layer: 0
+  - component: {fileID: 1383459042}
+  m_Layer: 13
   m_Name: Player_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,6 +468,18 @@ Transform:
   m_Father: {fileID: 1728589449}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1383459042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1383459036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7b8f1a076b0504ba99c908fad23b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRadius: 0.5
 --- !u!1 &1482516224
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +706,8 @@ GameObject:
   - component: {fileID: 1967058133}
   - component: {fileID: 1967058132}
   - component: {fileID: 1967058131}
-  m_Layer: 0
+  - component: {fileID: 1967058136}
+  m_Layer: 13
   m_Name: Player_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -796,6 +810,18 @@ Transform:
   m_Father: {fileID: 1728589449}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1967058136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1967058130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7b8f1a076b0504ba99c908fad23b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRadius: 0.5
 --- !u!1 &2118929914
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +834,8 @@ GameObject:
   - component: {fileID: 2118929917}
   - component: {fileID: 2118929916}
   - component: {fileID: 2118929915}
-  m_Layer: 0
+  - component: {fileID: 2118929920}
+  m_Layer: 13
   m_Name: Player_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -911,3 +938,15 @@ Transform:
   m_Father: {fileID: 1728589449}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2118929920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2118929914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7b8f1a076b0504ba99c908fad23b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRadius: 0.5
