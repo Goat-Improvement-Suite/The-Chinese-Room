@@ -98,7 +98,7 @@ public class CharacterItemInteraction : MonoBehaviour {
         return false;
     }
 
-    void ProcessingComplete(ItemInteraction item) {
+    public void ProcessingComplete(ItemInteraction item) {
         interactingWith = null;
         movement.StopIgnoringInput();
         holding = item;
