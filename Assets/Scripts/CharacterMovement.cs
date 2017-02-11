@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour {
 
-    public float speed;             //Floating point variable to store the player's movement speed.
+    public float maxPower;             //Floating point variable to store the player's movement speed.
     public float maxSpeed;
 
     public int playerNo;
@@ -19,8 +19,8 @@ public class CharacterMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        //Debug.DrawLine(transform.position, transform.position + (Vector3)rb2d.velocity);
+    }
 
     private void FixedUpdate() {
         //Store the current horizontal input in the float moveHorizontal.
@@ -30,14 +30,15 @@ public class CharacterMovement : MonoBehaviour {
         float moveVertical = Input.GetAxisRaw("Vertical" + "_" + playerNo);
 
         //Use the two store floats to create a new Vector2 variable movement.
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+        Vector2 movement = Vector2.ClampMagnitude(new Vector2(moveHorizontal, moveVertical), 1);
 
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-        if (rb2d.velocity.magnitude < maxSpeed && movement != Vector2.zero) {
-           rb2d.AddForce(movement * speed);
+        if (movement != Vector2.zero) {
+            Vector2 force = maxPower * movement;
+            float speed = rb2d.velocity.magnitude;
+            Vector2.ClampMagnitude(force, maxSpeed - speed);
+            rb2d.AddForce(force);
         }
-
         //Debug.DrawLine(transform.position, transform.position + (Vector3)movement, Color.red);
-        //Debug.DrawLine(transform.position, transform.position + (Vector3)rb2d.velocity);
     }
 }
