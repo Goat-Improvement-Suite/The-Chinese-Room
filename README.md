@@ -2,3 +2,8 @@
 Southampton Game Jam 2017 Entry for "The Chinese Room"
 
 # Authors
+
+
+#Credits
+##Fonts
+Nordica - Kinetic Plasma
