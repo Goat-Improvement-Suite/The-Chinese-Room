@@ -50,3 +50,6 @@ TagManager:
   - name: Items
     uniqueID: 1943179289
     locked: 0
+  - name: Prompts
+    uniqueID: 3676653849
+    locked: 0
