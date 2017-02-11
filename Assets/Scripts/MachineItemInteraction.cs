@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MachineItemInteraction : Interaction {
 
-    private GameColor color;
+    public GameColor color;
     private ItemInteraction currentItem;
     private CharacterItemInteraction currentPlayer;
     private int pushCount;
@@ -30,7 +30,7 @@ public class MachineItemInteraction : Interaction {
 	}
 
     public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
-        return (character != null && character.color == color && item != null && !item.processed);
+        return (character != null && character.color == color && item != null && !item.hasColor(color));
     }
 
     public override void Highlight() {
@@ -53,7 +53,7 @@ public class MachineItemInteraction : Interaction {
 
     private void complete() {
         //add color
-        currentItem.MarkAsProcessedBy(this);
+        currentItem.addColor(color);
         currentPlayer.ProcessingComplete(currentItem);
         currentPlayer = null;
         currentItem = null;

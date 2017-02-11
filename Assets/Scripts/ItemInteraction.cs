@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ItemInteraction : Interaction {
 
-    internal bool processed = false;
+    [SerializeField] internal bool blue = false;
+    [SerializeField] internal bool green = false;
+    [SerializeField] internal bool red = false;
+    [SerializeField] internal bool yellow = false;
     internal GameObject heldBy;
 
 	// Use this for initialization
@@ -25,8 +28,34 @@ public class ItemInteraction : Interaction {
         heldBy = obj;
     }
 
-    internal void MarkAsProcessedBy(MachineItemInteraction machineItemInteraction) {
-        processed = true;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+    public bool hasColor(GameColor color) {
+        switch (color) { 
+            case GameColor.Blue:
+                return blue;
+            case GameColor.Red:
+                return red;
+            case GameColor.Yellow:
+                return yellow;
+            case GameColor.Green:
+                return green;
+        }
+        return false;
+    }
+
+    public void addColor(GameColor color) {
+        switch (color) {
+            case GameColor.Blue:
+                blue = true;
+                break;
+            case GameColor.Red:
+                red = true;
+                break;
+            case GameColor.Yellow:
+                yellow = true;
+                break;
+            case GameColor.Green:
+                green = true;
+                break;
+        }
     }
 }
