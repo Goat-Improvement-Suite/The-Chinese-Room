@@ -5,15 +5,30 @@ using UnityEngine;
 
 public class BinItemInteraction : Interaction {
 
-	// Use this for initialization
-	void Start () {
-		
+    public Transform hinge;
+    public float openAngle;
+    private float angle;
+    private bool openLid;
+
+	void Start () {		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    void Update() {
+        if (openLid) {
+            angle = (openAngle - angle > 0.1f ? Mathf.Lerp(angle, openAngle, 0.1f) : openAngle);
+        } else {
+            angle = (angle > 0.1f ? Mathf.Lerp(angle, 0, 0.1f) : 0);
+        }
+        hinge.localRotation = Quaternion.Euler(0, angle, 0);
+    }
+
+    public override void Highlight(GameObject player) {
+        openLid = true;
+    }
+
+    public override void Unhighlight(GameObject player) {
+        openLid = false;
+    }
 
     public void DestroyItem(CharacterItemInteraction player, ItemInteraction item) {
         GameObject.Destroy(item.gameObject);

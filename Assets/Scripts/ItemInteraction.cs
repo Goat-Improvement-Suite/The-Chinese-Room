@@ -22,8 +22,6 @@ public class ItemInteraction : Interaction {
     void Update () {	
 	}
 
-    protected override void Awake() { }
-
     public override void Highlight(GameObject player) {
         outlineSpriteRenderer.enabled = true;
     }

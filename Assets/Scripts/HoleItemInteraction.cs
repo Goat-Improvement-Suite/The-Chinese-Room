@@ -7,8 +7,6 @@ public class HoleItemInteraction : Interaction {
 	void Start () {
 	}
 
-    protected override void Awake() { }
-
     public override void Highlight(GameObject player) {
         Debug.DrawLine(player.transform.position, transform.position);
     }

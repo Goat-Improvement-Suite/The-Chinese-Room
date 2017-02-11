@@ -39,6 +39,8 @@ public class CharacterItemInteraction : Interaction {
         movement = GetComponent<CharacterMovement>();
     }
 
+    public override void Highlight(GameObject player) { }
+    public override void Unhighlight(GameObject player) { }
 
     private Collider2D FindHotInteraction() {
         Collider2D result = null;
@@ -85,7 +87,6 @@ public class CharacterItemInteraction : Interaction {
                 //Start highlighting
                 hotInteraction.Highlight(gameObject);
                 Vector3 midpoint = Vector3.Lerp(this.transform.position, hotInteraction.gameObject.transform.position, 0.5f);
-                Debug.Log(midpoint.ToString());
                 if (buttonPrompt != null) {
                     buttonPrompt.transform.position = midpoint;
                 } else {

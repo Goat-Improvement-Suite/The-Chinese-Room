@@ -14,8 +14,6 @@ public class MachineItemInteraction : Interaction {
 
     void Start () {
 	}
-	
-    protected override void Awake() { }
 
 	void LateUpdate () {
         if (currentItem != null) {
