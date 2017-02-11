@@ -15,7 +15,7 @@ public class CharacterItemInteraction : Interaction {
     private LayerMask itemLayerMask, machineLayerMask, deskLayerMask, binLayerMask, holeLayerMask, playerLayerMask;
 
     internal int playerNo;
-    internal GameColor color;
+    public GameColor color;
 
     protected GameObject interactingWith;
     protected ItemInteraction holding;
