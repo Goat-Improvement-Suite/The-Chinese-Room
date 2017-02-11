@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ItemInteraction : MonoBehaviour {
 
+    internal GameObject heldBy;
+
 	// Use this for initialization
 	void Start () {
 		

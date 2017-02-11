@@ -68,11 +68,18 @@ public class CharacterItemInteraction : MonoBehaviour {
                 }
             } else {
                 if (Input.GetButtonDown("Interact_" + playerNo)) {
-
+                    Collider2D collider = null;
+                    if ((collider = Physics2D.OverlapCircle(transform.position, interactionRadius, itemLayerMask)) &&
+                        (collider.gameObject.GetComponent<ItemInteraction>().heldBy == null))
+                    {
+                        holding = collider.gameObject.GetComponent<ItemInteraction>();
+                        holding.heldBy = this.gameObject;
+                        collider.transform.parent = transform;
+                    }
                 }
 
-                    // Check for interaction with an Item
-                    if (Input.GetButtonDown("Interact_" + playerNo)) {
+                // Check for interaction with an Item
+                if (Input.GetButtonDown("Interact_" + playerNo)) {
 
                     Collider2D collider = Physics2D.OverlapCircle(transform.position, interactionRadius, itemLayerMask);
                     if (collider)
