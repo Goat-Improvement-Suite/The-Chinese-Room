@@ -9,7 +9,7 @@ public enum GameColor {
     Yellow
 }
 
-public class CharacterItemInteraction : MonoBehaviour {
+public class CharacterItemInteraction : Interaction {
     public float interactionRadius;
 
     private LayerMask itemLayerMask, machineLayerMask, deskLayerMask, binLayerMask, holeLayerMask, playerLayerMask;
@@ -19,6 +19,8 @@ public class CharacterItemInteraction : MonoBehaviour {
 
     protected GameObject interactingWith;
     protected ItemInteraction holding;
+
+    private Interaction hotInteraction;
 
     private CharacterMovement movement;
 
@@ -33,69 +35,103 @@ public class CharacterItemInteraction : MonoBehaviour {
         movement = GetComponent<CharacterMovement>();
     }
 
-	void Update () {
-        //Debug.DrawLine(transform.position, transform.position + new Vector3(0, interactionRadius, 0));
-        if (!interactingWith) {
-            if (holding) {
-                // Check for interaction with: Player, Machine, Desk, Hole or Bin
-                if (Input.GetButtonDown("Interact_" + playerNo)) {
-                    Collider2D collider = null;
-                    if ((collider = Physics2D.OverlapCircle(transform.position, interactionRadius, playerLayerMask)) &&
-                        collider.gameObject.GetComponent<CharacterItemInteraction>().ReceiveItem(this, holding))
-                    {
-                        holding = null;
-                    } else if ((collider = Physics2D.OverlapCircle(transform.position, interactionRadius, machineLayerMask)) &&
-                               collider.gameObject.GetComponent<MachineItemInteraction>().StartProcessingItem(this, holding))
-                    {
-                        holding = null;
-                        interactingWith = collider.gameObject;
-                        movement.StartIgnoringInput();
-                    //}
-                    //else if (collider = Physics2D.OverlapCircle(transform.position, interactionRadius, deskLayerMask) &&
-                    //         collider.gameObject.GetComponent<DeskInteraction>().PlaceItem(this, holding))
-                    //{
-                    //    holding = null;
-                    //}
-                    //else if (collider = Physics2D.OverlapCircle(transform.position, interactionRadius, holeLayerMask) &&
-                    //         collider.gameObject.GetComponent<HoleInteraction>().ScoreItem(this, holding))
-                    //{
-                    //    holding = null;
-                    //}
-                    //else if (collider = Physics2D.OverlapCircle(transform.position, interactionRadius, binLayerMask) &&
-                    //         collider.gameObject.GetComponent<BinInteraction>().DestroyItem(this, holding))
-                    //{
-                    //    holding = null;
+
+    private Collider2D FindHotInteraction() {
+        Collider2D result = null;
+        if (holding) {
+            LayerMask[] masks = new LayerMask[] { playerLayerMask, machineLayerMask, deskLayerMask, holeLayerMask, binLayerMask };
+            foreach (LayerMask mask in masks) {
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactionRadius, mask);
+                foreach (Collider2D collider in colliders) {
+                    if (collider && collider.GetComponent<Interaction>().CanInteractWith(this, holding)) {
+                        result = collider;
+                        break;
+                    } else {
+                        result = null;
                     }
                 }
+            }
+        } else {
+            Collider2D collider = Physics2D.OverlapCircle(transform.position, interactionRadius, itemLayerMask);
+            if (collider && collider.GetComponent<Interaction>().CanInteractWith(this, holding)) {
+                result = collider;
             } else {
-                if (Input.GetButtonDown("Interact_" + playerNo)) {
-                    Collider2D collider = null;
-                    if ((collider = Physics2D.OverlapCircle(transform.position, interactionRadius, itemLayerMask)) &&
-                        collider.gameObject.GetComponent<ItemInteraction>().CanBePickedUpBy(gameObject))
-                    {
-                        holding = collider.gameObject.GetComponent<ItemInteraction>();
-                        holding.MarkAsHeldBy(gameObject);
-                        collider.transform.parent = transform;
-                    }
-                }
+                result = null;
+            }
+        }
+        return result;
+    }
 
-                // Check for interaction with an Item
-                if (Input.GetButtonDown("Interact_" + playerNo)) {
+    void Update() {
+        if (playerNo == 0) {
+            for (int a = 0; a < 360; a += 5) {
+                Debug.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, a) * new Vector3(0, interactionRadius, 0));
+            }
+        }
+        if (!interactingWith) {
+            Collider2D collider = FindHotInteraction();
 
-                    Collider2D collider = Physics2D.OverlapCircle(transform.position, interactionRadius, itemLayerMask);
-                    if (collider)
-                    {
-                        //collider.gameObject.GetComponent<ItemInteraction>().StarPickUp(playerNo);
+            // Clear previous hot interaction
+            Interaction nextHotInteraction = (collider ? collider.GetComponent<Interaction>() : null);
+            if (hotInteraction && hotInteraction != nextHotInteraction && hotInteraction.GetComponent<SpriteRenderer>()) {
+                hotInteraction.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+
+            // Set and handle hot interaction
+            hotInteraction = nextHotInteraction;
+            if (hotInteraction && hotInteraction.GetComponent<SpriteRenderer>()) {
+                hotInteraction.GetComponent<SpriteRenderer>().color = Color.black;
+            }
+
+            if (collider) {
+                // Process action
+                if (collider.GetComponent<CharacterItemInteraction>()) {
+                    // Could give player an item
+                    if (Input.GetButtonDown("Interact_" + playerNo)) {
+                        if (collider.GetComponent<CharacterItemInteraction>().ReceiveItem(this, holding)) {
+                            holding = null;
+                        } else {
+                            // This should not happen
+                            Debug.Log("Warning: Could not give item");
+                        }
                     }
-                }
-                if (Input.GetButtonUp("Interact_" + playerNo))
-                {
-                    // Cancel interaction
-                    //interactingWith.GetComponent<ItemInteraction>().Cancel(playerNo);
-                    interactingWith = null;
+                } else if (collider.GetComponent<MachineItemInteraction>()) {
+                    // Could process an item in a machine
+                    if (Input.GetButtonDown("Interact_" + playerNo)) {
+                        if (holding) {
+                            if (collider.GetComponent<MachineItemInteraction>().StartProcessingItem(this, holding)) {
+                                holding = null;
+                                interactingWith = collider.gameObject;
+                                movement.StartIgnoringInput();
+                            }
+                            else {
+                                // This should not happen
+                                Debug.Log("Warning: Could not use machine");
+                            }
+                        } else {
+                            // This should not happen
+                            Debug.Log("Warning: Wasn't holding an item what I should be");
+                        }
+                    }
+                } else if (collider.GetComponent<ItemInteraction>()) {
+                    // Could pick up an item
+                    if (Input.GetButtonDown("Interact_" + playerNo)) {
+                        if (!holding) {
+                            holding = collider.GetComponent<ItemInteraction>();
+                            holding.MarkAsHeldBy(gameObject);
+                            collider.transform.parent = transform;
+                        } else {
+                            // This should not happen
+                            Debug.Log("Warning: Wasn't holding an item what I should be");
+                        }
+                    }
                 }
             }
         }
+    }
+
+    public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
+        return (holding == null && item != null);
     }
 
     internal bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {

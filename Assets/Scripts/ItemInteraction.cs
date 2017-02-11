@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemInteraction : MonoBehaviour {
+public class ItemInteraction : Interaction {
 
     internal bool processed = false;
     internal GameObject heldBy;
@@ -17,8 +17,8 @@ public class ItemInteraction : MonoBehaviour {
 		
 	}
 
-    internal bool CanBePickedUpBy(GameObject obj) {
-        return (!heldBy && heldBy != obj);
+    public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
+        return (heldBy == null && character != null);
     }
 
     internal void MarkAsHeldBy(GameObject obj) {

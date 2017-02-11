@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MachineItemInteraction : MonoBehaviour {
+public class MachineItemInteraction : Interaction {
 
     private GameColor color;
     private ItemInteraction currentItem;
@@ -24,14 +24,16 @@ public class MachineItemInteraction : MonoBehaviour {
         }
 	}
 
-    internal bool StartProcessingItem(CharacterItemInteraction playerCII, ItemInteraction item) {
-        if (playerCII.color == color && !item.processed) {
-            if (item != null) {
-                currentItem = item;
-                currentPlayer = playerCII;
-                pushCount = 0;
-                return true;
-            }
+    public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
+        return (character != null && character.color == color && item != null && !item.processed);
+    }
+
+    public bool StartProcessingItem(CharacterItemInteraction character, ItemInteraction item) {
+        if (CanInteractWith(character, item)) {
+            currentItem = item;
+            currentPlayer = character;
+            pushCount = 0;
+            return true;
         }
         return false;
     }
