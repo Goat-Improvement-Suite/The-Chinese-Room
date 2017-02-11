@@ -13,15 +13,19 @@ public class CharacterMovement : MonoBehaviour {
 
     private bool ignoreInput = false;
 
+    private SpriteRenderer spriteRenderer;
+
     // Use this for initialization
     void Start () {
         //Get and store a reference to the Rigidbody2D component so that we can access it.
         rb2d = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         //Debug.DrawLine(transform.position, transform.position + (Vector3)rb2d.velocity);
+        spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y * 10);
     }
 
     private void FixedUpdate() {
