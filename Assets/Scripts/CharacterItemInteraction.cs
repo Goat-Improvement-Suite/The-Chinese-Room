@@ -91,12 +91,14 @@ public class CharacterItemInteraction : Interaction {
                     if (Input.GetButtonDown("Interact_" + playerNo)) {
                         if (collider.GetComponent<CharacterItemInteraction>().ReceiveItem(this, holding)) {
                             holding = null;
-                        } else {
+                        }
+                        else {
                             // This should not happen
                             Debug.Log("Warning: Could not give item");
                         }
                     }
-                } else if (collider.GetComponent<MachineItemInteraction>()) {
+                }
+                else if (collider.GetComponent<MachineItemInteraction>()) {
                     // Could process an item in a machine
                     if (Input.GetButtonDown("Interact_" + playerNo)) {
                         if (holding) {
@@ -109,7 +111,20 @@ public class CharacterItemInteraction : Interaction {
                                 // This should not happen
                                 Debug.Log("Warning: Could not use machine");
                             }
-                        } else {
+                        }
+                        else {
+                            // This should not happen
+                            Debug.Log("Warning: Wasn't holding an item what I should be");
+                        }
+                    }
+                } else if (collider.GetComponent<BinItemInteraction>()) {
+                    // Could pick up an item
+                    if (Input.GetButtonDown("Interact_" + playerNo)) {
+                        if (holding) {
+                            collider.GetComponent<BinItemInteraction>().DestroyItem(this, holding);
+                            holding = null;
+                        }
+                        else {
                             // This should not happen
                             Debug.Log("Warning: Wasn't holding an item what I should be");
                         }

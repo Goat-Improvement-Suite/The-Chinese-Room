@@ -15,12 +15,11 @@ public class BinItemInteraction : Interaction {
 		
 	}
 
-    public void giveItem(ItemInteraction item) {
+    public void DestroyItem(CharacterItemInteraction player, ItemInteraction item) {
         GameObject.Destroy(item.gameObject);
     }
 
     public override bool CanInteractWith(CharacterItemInteraction characterItemInteraction, ItemInteraction itemInteraction) {
         return true;
     }
-
 }
