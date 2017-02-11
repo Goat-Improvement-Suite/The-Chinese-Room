@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HelpMenuController : MonoBehaviour {
 
@@ -13,4 +14,8 @@ public class HelpMenuController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void MainMenu() {
+        SceneManager.LoadScene("menu");
+    }
 }
