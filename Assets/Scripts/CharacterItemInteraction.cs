@@ -89,7 +89,7 @@ public class CharacterItemInteraction : Interaction {
             if (hotInteraction) {
                 //Start highlighting
                 hotInteraction.Highlight();
-                Vector3 midpoint = (this.gameObject.transform.position + this.gameObject.transform.position) / 2;
+                Vector3 midpoint = Vector3.Lerp(this.transform.position, hotInteraction.gameObject.transform.position, 0.5f);
                 Debug.Log(midpoint.ToString());
                 if (buttonPrompt != null) {
                     buttonPrompt.transform.position = midpoint;
@@ -98,6 +98,8 @@ public class CharacterItemInteraction : Interaction {
                     buttonPrompt.transform.position = midpoint;
                     SpriteRenderer buttonPromptRenderer = buttonPrompt.AddComponent<SpriteRenderer>();
                     buttonPromptRenderer.sprite = aPrompt;
+                    buttonPromptRenderer.sortingLayerName = "Prompts";
+                    buttonPrompt.transform.localScale = Vector3.Lerp(buttonPrompt.transform.localScale, Vector3.zero, 0.5f);
                 }
 
             }
