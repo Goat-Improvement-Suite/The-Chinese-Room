@@ -22,4 +22,8 @@ public class MainMenuController : MonoBehaviour {
     void QuitGame() {
         Application.Quit();
     }
+
+    void Help() {
+        SceneManager.LoadScene("help");
+    }
 }
