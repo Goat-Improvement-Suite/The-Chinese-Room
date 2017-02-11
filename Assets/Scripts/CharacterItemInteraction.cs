@@ -25,6 +25,9 @@ public class CharacterItemInteraction : Interaction {
 
     private CharacterMovement movement;
 
+    [SerializeField] private Sprite aPrompt;
+
+    private GameObject buttonPrompt;
     void Start() {
         itemLayerMask = LayerMask.GetMask("Items");
         machineLayerMask = LayerMask.GetMask("Machines");
@@ -75,13 +78,28 @@ public class CharacterItemInteraction : Interaction {
             // Clear previous hot interaction
             Interaction nextHotInteraction = (collider ? collider.GetComponent<Interaction>() : null);
             if (hotInteraction && hotInteraction != nextHotInteraction) {
+                //Stop highlighting
                 hotInteraction.Unhighlight();
+                GameObject.Destroy(buttonPrompt);
+                buttonPrompt = null;
             }
 
             // Set and handle hot interaction
             hotInteraction = nextHotInteraction;
             if (hotInteraction) {
+                //Start highlighting
                 hotInteraction.Highlight();
+                Vector3 midpoint = (this.gameObject.transform.position + this.gameObject.transform.position) / 2;
+                Debug.Log(midpoint.ToString());
+                if (buttonPrompt != null) {
+                    buttonPrompt.transform.position = midpoint;
+                } else {
+                    buttonPrompt = new GameObject("player_" + playerNo + " Button Prompt");
+                    buttonPrompt.transform.position = midpoint;
+                    SpriteRenderer buttonPromptRenderer = buttonPrompt.AddComponent<SpriteRenderer>();
+                    buttonPromptRenderer.sprite = aPrompt;
+                }
+
             }
 
             if (collider) {
