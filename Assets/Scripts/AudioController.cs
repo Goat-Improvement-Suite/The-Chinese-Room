@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour {
 
+    private static bool alreadyExists;
+
 	// Use this for initialization
 	void Start () {
-        DontDestroyOnLoad(this.gameObject);
+        if (alreadyExists != true) {
+            alreadyExists = true;
+            DontDestroyOnLoad(this.gameObject);
+        } else {
+            GameObject.Destroy(this.gameObject);
+        }
 	}
 	
 	// Update is called once per frame
