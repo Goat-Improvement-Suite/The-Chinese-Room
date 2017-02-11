@@ -119,6 +119,7 @@ public class CharacterItemInteraction : Interaction {
                     if (Input.GetButtonDown("Interact_" + playerNo)) {
                         if (!holding) {
                             holding = collider.GetComponent<ItemInteraction>();
+                            KillItemPhysics(holding);
                             holding.MarkAsHeldBy(gameObject);
                             collider.transform.parent = transform;
                         } else {
@@ -138,6 +139,7 @@ public class CharacterItemInteraction : Interaction {
     internal bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
         if (!holding) {
             holding = itemInteraction;
+            KillItemPhysics(holding);
             holding.transform.parent = transform;
             return true;
         }
@@ -148,5 +150,11 @@ public class CharacterItemInteraction : Interaction {
         interactingWith = null;
         movement.StopIgnoringInput();
         holding = item;
+    }
+
+    internal void KillItemPhysics(ItemInteraction item) {
+        item.GetComponent<Rigidbody2D>().isKinematic = true;
+        item.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+        item.GetComponent<Rigidbody2D>().angularVelocity = 0f;
     }
 }
