@@ -10,9 +10,14 @@ public class MachineItemInteraction : Interaction {
     private int pushCount;
     private const int COUNT_LIMIT = 20;
 
-    void Start () {		
+    private SpriteRenderer highlightRenderer;
+
+    void Start () {
+        highlightRenderer = transform.Find("MachineHilight").GetComponent<SpriteRenderer>();
 	}
 	
+    protected override void Awake() { }
+
 	void LateUpdate () {
         if (currentItem != null) {
             if (Input.GetButtonDown("Interact_" + currentPlayer.playerNo)) {
@@ -26,6 +31,14 @@ public class MachineItemInteraction : Interaction {
 
     public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
         return (character != null && character.color == color && item != null && !item.processed);
+    }
+
+    public override void Highlight() {
+        highlightRenderer.enabled = true;
+    }
+
+    public override void Unhighlight() {
+        highlightRenderer.enabled = false;
     }
 
     public bool StartProcessingItem(CharacterItemInteraction character, ItemInteraction item) {

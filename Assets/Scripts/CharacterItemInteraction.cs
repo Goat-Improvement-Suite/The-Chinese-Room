@@ -80,7 +80,7 @@ public class CharacterItemInteraction : Interaction {
 
             // Set and handle hot interaction
             hotInteraction = nextHotInteraction;
-            if (hotInteraction && hotInteraction.GetComponent<SpriteRenderer>()) {
+            if (hotInteraction) {
                 hotInteraction.Highlight();
             }
 

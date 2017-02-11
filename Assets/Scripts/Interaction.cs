@@ -8,15 +8,15 @@ public abstract class Interaction : MonoBehaviour {
     // Placeholder highlighting system
     Color originalColor;
 
-    void Awake() {
+    protected virtual void Awake() {
         originalColor = GetComponent<SpriteRenderer>().color;
     }
 
-    public void Highlight() {    
+    public virtual void Highlight() {
         GetComponent<SpriteRenderer>().color = Color.black;
     }
 
-    public void Unhighlight() {
+    public virtual void Unhighlight() {
         GetComponent<SpriteRenderer>().color = originalColor;
     }
 }
