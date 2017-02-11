@@ -1,13 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: f66cddc8b80ca48439f6a0591e388ae8
-timeCreated: 1486825894
-licenseType: Free
-TextureImporter:
-  fileIDToRecycleName: {}
-=======
 guid: 10bd924b035235546a163a7d41287aef
-timeCreated: 1486826655
+timeCreated: 1486831464
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -15,7 +8,6 @@ TextureImporter:
     21300002: GreenPlayer_1
     21300004: GreenPlayer_2
     21300006: GreenPlayer_3
->>>>>>> 58fbcbf2f7f84bc070afb3cd9577af571829af85
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -46,11 +38,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-<<<<<<< HEAD
-  spriteMode: 1
-=======
   spriteMode: 2
->>>>>>> 58fbcbf2f7f84bc070afb3cd9577af571829af85
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -74,11 +62,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-<<<<<<< HEAD
-  spriteSheet:
-    serializedVersion: 2
-    sprites: []
-=======
   - buildTarget: Standalone
     maxTextureSize: 2048
     textureFormat: -1
@@ -142,7 +125,6 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
->>>>>>> 58fbcbf2f7f84bc070afb3cd9577af571829af85
     outline: []
   spritePackingTag: 
   userData: 
