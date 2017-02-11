@@ -10,10 +10,9 @@ public class MachineItemInteraction : Interaction {
     private int pushCount;
     private const int COUNT_LIMIT = 20;
 
-    private SpriteRenderer highlightRenderer;
+    public SpriteRenderer[] highlightSpriteRenderers;
 
     void Start () {
-        highlightRenderer = transform.Find("MachineHilight").GetComponent<SpriteRenderer>();
 	}
 	
     protected override void Awake() { }
@@ -34,11 +33,15 @@ public class MachineItemInteraction : Interaction {
     }
 
     public override void Highlight() {
-        highlightRenderer.enabled = true;
+        foreach (var sr in highlightSpriteRenderers) {
+            sr.enabled = true;
+        }
     }
 
     public override void Unhighlight() {
-        highlightRenderer.enabled = false;
+        foreach (var sr in highlightSpriteRenderers) {
+            sr.enabled = false;
+        }
     }
 
     public bool StartProcessingItem(CharacterItemInteraction character, ItemInteraction item) {

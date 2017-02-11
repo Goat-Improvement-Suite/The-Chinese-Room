@@ -286,6 +286,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!212 &142677195 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212291277980947082, guid: 657302dd5f8002742ad88b3504a5da4b,
+    type: 2}
+  m_PrefabInternal: {fileID: 995832775}
 --- !u!1 &165436563
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +425,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!212 &198034405 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212737381336667280, guid: 657302dd5f8002742ad88b3504a5da4b,
+    type: 2}
+  m_PrefabInternal: {fileID: 995832775}
 --- !u!1 &238310480
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,7 +676,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481a0f7c24d73f942bddf55d8baf8237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 0
+  color: 1
+  highlightSpriteRenderers:
+  - {fileID: 1066229820}
 --- !u!61 &288103874
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1983,6 +1995,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!212 &906271186 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212291122604183894, guid: 657302dd5f8002742ad88b3504a5da4b,
+    type: 2}
+  m_PrefabInternal: {fileID: 995832775}
 --- !u!1 &910696243
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,6 +2202,31 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
+        type: 2}
+      propertyPath: outlineSpriteRenderer
+      value: 
+      objectReference: {fileID: 906271186}
+    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
+        type: 2}
+      propertyPath: blueSymbolSpriteRenderer
+      value: 
+      objectReference: {fileID: 1622356728}
+    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
+        type: 2}
+      propertyPath: greenSymbolSpriteRenderer
+      value: 
+      objectReference: {fileID: 1718466886}
+    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
+        type: 2}
+      propertyPath: redSymbolSpriteRenderer
+      value: 
+      objectReference: {fileID: 198034405}
+    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
+        type: 2}
+      propertyPath: yellowSymbolSpriteRenderer
+      value: 
+      objectReference: {fileID: 142677195}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 657302dd5f8002742ad88b3504a5da4b, type: 2}
   m_IsPrefabParent: 0
@@ -2309,6 +2351,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 0
+  highlightSpriteRenderers:
+  - {fileID: 2037011494}
+  - {fileID: 998797805}
 --- !u!61 &1000764587
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2881,7 +2926,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481a0f7c24d73f942bddf55d8baf8237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 0
+  color: 3
+  highlightSpriteRenderers:
+  - {fileID: 2130997228}
 --- !u!61 &1163557061
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3766,7 +3813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRadius: 0.5
-  color: 0
+  color: 1
 --- !u!1 &1407680321
 GameObject:
   m_ObjectHideFlags: 0
@@ -3815,7 +3862,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481a0f7c24d73f942bddf55d8baf8237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 0
+  color: 2
+  highlightSpriteRenderers:
+  - {fileID: 992230570}
 --- !u!61 &1407680324
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4018,7 +4067,6 @@ GameObject:
   - component: {fileID: 1495607639}
   - component: {fileID: 1495607638}
   - component: {fileID: 1495607640}
-  - component: {fileID: 1495607641}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -4092,21 +4140,6 @@ EdgeCollider2D:
   - {x: 0.502963, y: -0.5014022}
   - {x: 0.49834353, y: 0.50000024}
   - {x: -0.49841556, y: 0.5015442}
---- !u!114 &1495607641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1495607637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a66f3003647434e914d3382e394e88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blue: 0
-  green: 0
-  red: 0
-  yellow: 0
 --- !u!1 &1552122616
 GameObject:
   m_ObjectHideFlags: 0
@@ -4285,6 +4318,11 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 2.5, y: 5}
+--- !u!212 &1622356728 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212934163024183530, guid: 657302dd5f8002742ad88b3504a5da4b,
+    type: 2}
+  m_PrefabInternal: {fileID: 995832775}
 --- !u!1 &1647591841
 GameObject:
   m_ObjectHideFlags: 0
@@ -4477,6 +4515,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!212 &1718466886 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212105671908344354, guid: 657302dd5f8002742ad88b3504a5da4b,
+    type: 2}
+  m_PrefabInternal: {fileID: 995832775}
 --- !u!1 &1728589448
 GameObject:
   m_ObjectHideFlags: 0
@@ -5033,7 +5076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRadius: 0.5
-  color: 0
+  color: 2
 --- !u!1 &2037011492
 GameObject:
   m_ObjectHideFlags: 0
@@ -5345,7 +5388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRadius: 0.5
-  color: 0
+  color: 3
 --- !u!1 &2130997226
 GameObject:
   m_ObjectHideFlags: 0

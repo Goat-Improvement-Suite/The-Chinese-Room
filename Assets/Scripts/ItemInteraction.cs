@@ -10,16 +10,16 @@ public class ItemInteraction : Interaction {
     [SerializeField] internal bool yellow = false;
     internal GameObject heldBy;
 
-    private SpriteRenderer outlineSpriteRenderer;
+    public SpriteRenderer outlineSpriteRenderer;
+    public SpriteRenderer blueSymbolSpriteRenderer;
+    public SpriteRenderer greenSymbolSpriteRenderer;
+    public SpriteRenderer redSymbolSpriteRenderer;
+    public SpriteRenderer yellowSymbolSpriteRenderer;
 
     void Start() {
-        var outlineObject = transform.Find("Outline");
-        if (outlineObject) {
-            outlineSpriteRenderer = outlineObject.GetComponent<SpriteRenderer>();
-        }
-   	}
-	
-	void Update () {	
+    }
+
+    void Update () {	
 	}
 
     protected override void Awake() { }
@@ -58,15 +58,19 @@ public class ItemInteraction : Interaction {
         switch (color) {
             case GameColor.Blue:
                 blue = true;
+                blueSymbolSpriteRenderer.enabled = true;
                 break;
             case GameColor.Red:
                 red = true;
+                redSymbolSpriteRenderer.enabled = true;
                 break;
             case GameColor.Yellow:
                 yellow = true;
+                yellowSymbolSpriteRenderer.enabled = true;
                 break;
             case GameColor.Green:
                 green = true;
+                greenSymbolSpriteRenderer.enabled = true;
                 break;
         }
     }
