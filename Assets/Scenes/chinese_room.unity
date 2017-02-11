@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 114996856}
   - component: {fileID: 114996857}
   - component: {fileID: 114996858}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BottomSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6d7721eb02b624cbbeb30137b224e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: 1
 --- !u!1 &129065646
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +631,7 @@ GameObject:
   - component: {fileID: 291076137}
   - component: {fileID: 291076138}
   - component: {fileID: 291076139}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BottomSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,6 +679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6d7721eb02b624cbbeb30137b224e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: 0
 --- !u!1 &313715543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,7 +2773,7 @@ GameObject:
   - component: {fileID: 944511690}
   - component: {fileID: 944511691}
   - component: {fileID: 944511692}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BottomSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2819,6 +2821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6d7721eb02b624cbbeb30137b224e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: 2
 --- !u!1 &946820015
 GameObject:
   m_ObjectHideFlags: 0
@@ -4638,7 +4641,7 @@ GameObject:
   - component: {fileID: 1414524516}
   - component: {fileID: 1414524517}
   - component: {fileID: 1414524518}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4686,6 +4689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6d7721eb02b624cbbeb30137b224e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: 0
 --- !u!1 &1420184178
 GameObject:
   m_ObjectHideFlags: 0
@@ -5492,7 +5496,7 @@ GameObject:
   - component: {fileID: 1691175937}
   - component: {fileID: 1691175938}
   - component: {fileID: 1691175939}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5540,6 +5544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6d7721eb02b624cbbeb30137b224e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: 3
 --- !u!212 &1718466886 stripped
 SpriteRenderer:
   m_PrefabParentObject: {fileID: 212105671908344354, guid: 657302dd5f8002742ad88b3504a5da4b,
@@ -5654,7 +5659,7 @@ GameObject:
   - component: {fileID: 1783767971}
   - component: {fileID: 1783767972}
   - component: {fileID: 1783767973}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5702,6 +5707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6d7721eb02b624cbbeb30137b224e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: 2
 --- !u!1 &1823002881
 GameObject:
   m_ObjectHideFlags: 0
@@ -6067,7 +6073,7 @@ GameObject:
   - component: {fileID: 1903134213}
   - component: {fileID: 1903134214}
   - component: {fileID: 1903134215}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6115,6 +6121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6d7721eb02b624cbbeb30137b224e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: 1
 --- !u!1 &1939218952
 GameObject:
   m_ObjectHideFlags: 0
@@ -6125,7 +6132,7 @@ GameObject:
   - component: {fileID: 1939218953}
   - component: {fileID: 1939218954}
   - component: {fileID: 1939218955}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BottomSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6173,6 +6180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6d7721eb02b624cbbeb30137b224e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: 3
 --- !u!1 &1967058130
 GameObject:
   m_ObjectHideFlags: 0

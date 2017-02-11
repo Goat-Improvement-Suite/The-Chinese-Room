@@ -114,6 +114,18 @@ public class CharacterItemInteraction : Interaction {
                         }
                     }
                 }
+                else if (collider.GetComponent<TableItemInteraction>()) {
+                    // Could put item on table slot
+                    if (Input.GetButtonDown("Interact_" + playerNo)) {
+                        if (collider.GetComponent<TableItemInteraction>().ReceiveItem(this, holding)) {
+                            holding = null;
+                        }
+                        else {
+                            // This should not happen
+                            Debug.Log("Warning: Could not put item on table");
+                        }
+                    }
+                }
                 else if (collider.GetComponent<MachineItemInteraction>()) {
                     // Could process an item in a machine
                     if (Input.GetButtonDown("Interact_" + playerNo)) {
@@ -167,7 +179,7 @@ public class CharacterItemInteraction : Interaction {
         return (holding == null && item != null);
     }
 
-    internal bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
+    public bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
         if (!holding) {
             holding = itemInteraction;
             KillItemPhysics(holding);
@@ -177,7 +189,7 @@ public class CharacterItemInteraction : Interaction {
         return false;
     }
 
-    internal void ProcessingComplete(ItemInteraction item) {
+    public void ProcessingComplete(ItemInteraction item) {
         interactingWith = null;
         movement.StopIgnoringInput();
         holding = item;
