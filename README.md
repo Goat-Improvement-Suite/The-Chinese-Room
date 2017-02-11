@@ -11,9 +11,20 @@ Nordica - Kinetic Plasma
 ##Images
 ###Cogs
 http://opengameart.org/content/cog-sheet
+
 http://opengameart.org/content/cog-sheet-2
+
 [Uploaded by "Bluce"]
+
 Licenced Under CC-BY-SA 3.0 Licence
+
+##Audio
+###Music
+"The Show Must Be Go" Kevin MacLeod (incompetech.com)
+
+Licensed under Creative Commons: By Attribution 3.0 License
+
+http://creativecommons.org/licenses/by/3.0/
 
 
 ##color pallet
