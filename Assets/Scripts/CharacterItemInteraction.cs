@@ -43,12 +43,13 @@ public class CharacterItemInteraction : MonoBehaviour {
                         collider.gameObject.GetComponent<CharacterItemInteraction>().GiveItem(this, holding))
                     {
                         holding = null;
-                    //} else if (collider = Physics2D.OverlapCircle(transform.position, interactionRadius, machineLayerMask) &&
-                    //           collider.gameObject.GetComponent<MachineItemInteraction>().StartProcessingItem(this, holding))
-                    //{
-                    //    holding = null;
-                    //    interactingWith = collider.gameObject;
-                    //    movement.StartIgnoringInput();
+                    } else if ((collider = Physics2D.OverlapCircle(transform.position, interactionRadius, machineLayerMask)) &&
+                               collider.gameObject.GetComponent<MachineItemInteraction>().StartProcessingItem(this, holding))
+                    {
+                        Debug.Log("Pressed!");
+                        holding = null;
+                        interactingWith = collider.gameObject;
+                        movement.StartIgnoringInput();
                     //}
                     //else if (collider = Physics2D.OverlapCircle(transform.position, interactionRadius, deskLayerMask) &&
                     //         collider.gameObject.GetComponent<DeskInteraction>().PlaceItem(this, holding))
@@ -105,7 +106,7 @@ public class CharacterItemInteraction : MonoBehaviour {
         return false;
     }
 
-    public void ProcessingComplete(ItemInteraction item) {
+    internal void ProcessingComplete(ItemInteraction item) {
         interactingWith = null;
         movement.StopIgnoringInput();
         holding = item;

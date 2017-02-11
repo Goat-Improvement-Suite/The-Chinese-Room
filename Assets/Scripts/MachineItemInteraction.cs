@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MachineInteraction : MonoBehaviour {
+public class MachineItemInteraction : MonoBehaviour {
 
     private GameColor color;
     private ItemInteraction currentItem;
@@ -27,7 +27,7 @@ public class MachineInteraction : MonoBehaviour {
         }
 	}
 
-    bool Interact (CharacterItemInteraction playerCII, ItemInteraction item) {
+    internal bool StartProcessingItem(CharacterItemInteraction playerCII, ItemInteraction item) {
         if (playerCII.color == color) {
             if (item != null) {
                 currentItem = item;
