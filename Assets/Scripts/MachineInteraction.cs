@@ -5,7 +5,7 @@ using UnityEngine;
 public class MachineInteraction : MonoBehaviour {
 
     private GameColor color;
-    private GameObject currentItem;
+    private ItemInteraction currentItem;
     private CharacterItemInteraction currentPlayer;
     private int pushCount;
     private const int COUNT_LIMIT = 20;
@@ -27,10 +27,10 @@ public class MachineInteraction : MonoBehaviour {
         }
 	}
 
-    bool Interact (CharacterItemInteraction playerCII, GameObject obj) {
+    bool Interact (CharacterItemInteraction playerCII, ItemInteraction item) {
         if (playerCII.color == color) {
-            if (obj != null) {
-                currentItem = obj;
+            if (item != null) {
+                currentItem = item;
                 currentPlayer = playerCII;
                 pushCount = 0;
                 return true;
