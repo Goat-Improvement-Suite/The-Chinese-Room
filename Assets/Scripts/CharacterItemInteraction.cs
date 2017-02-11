@@ -67,11 +67,6 @@ public class CharacterItemInteraction : Interaction {
     }
 
     void Update() {
-        if (playerNo == 0) {
-            for (int a = 0; a < 360; a += 5) {
-                Debug.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, a) * new Vector3(0, interactionRadius, 0));
-            }
-        }
         if (!interactingWith) {
             Collider2D collider = FindHotInteraction();
 
@@ -79,7 +74,7 @@ public class CharacterItemInteraction : Interaction {
             Interaction nextHotInteraction = (collider ? collider.GetComponent<Interaction>() : null);
             if (hotInteraction && hotInteraction != nextHotInteraction) {
                 //Stop highlighting
-                hotInteraction.Unhighlight();
+                hotInteraction.Unhighlight(gameObject);
                 GameObject.Destroy(buttonPrompt);
                 buttonPrompt = null;
             }
@@ -88,7 +83,7 @@ public class CharacterItemInteraction : Interaction {
             hotInteraction = nextHotInteraction;
             if (hotInteraction) {
                 //Start highlighting
-                hotInteraction.Highlight();
+                hotInteraction.Highlight(gameObject);
                 Vector3 midpoint = (this.gameObject.transform.position + this.gameObject.transform.position) / 2;
                 Debug.Log(midpoint.ToString());
                 if (buttonPrompt != null) {

@@ -24,11 +24,11 @@ public class ItemInteraction : Interaction {
 
     protected override void Awake() { }
 
-    public override void Highlight() {
+    public override void Highlight(GameObject player) {
         outlineSpriteRenderer.enabled = true;
     }
 
-    public override void Unhighlight() {
+    public override void Unhighlight(GameObject player) {
         outlineSpriteRenderer.enabled = false;
     }
 
@@ -38,6 +38,10 @@ public class ItemInteraction : Interaction {
 
     internal void MarkAsHeldBy(GameObject obj) {
         heldBy = obj;
+    }
+
+    public bool hasAllColors() {
+        return (blue && red && yellow && green);
     }
 
     public bool hasColor(GameColor color) {

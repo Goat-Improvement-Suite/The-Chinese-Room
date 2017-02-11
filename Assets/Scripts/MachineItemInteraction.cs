@@ -32,13 +32,13 @@ public class MachineItemInteraction : Interaction {
         return (character != null && character.color == color && item != null && !item.hasColor(color));
     }
 
-    public override void Highlight() {
+    public override void Highlight(GameObject player) {
         foreach (var sr in highlightSpriteRenderers) {
             sr.enabled = true;
         }
     }
 
-    public override void Unhighlight() {
+    public override void Unhighlight(GameObject player) {
         foreach (var sr in highlightSpriteRenderers) {
             sr.enabled = false;
         }
