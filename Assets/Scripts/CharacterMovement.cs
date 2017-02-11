@@ -19,7 +19,7 @@ public class CharacterMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.DrawLine(transform.position, transform.position + (Vector3)rb2d.velocity);
+        //Debug.DrawLine(transform.position, transform.position + (Vector3)rb2d.velocity);
     }
 
     private void FixedUpdate() {
@@ -32,14 +32,13 @@ public class CharacterMovement : MonoBehaviour {
         //Use the two store floats to create a new Vector2 variable movement.
         Vector2 movement = Vector2.ClampMagnitude(new Vector2(moveHorizontal, moveVertical), 1);
 
-        Vector2 force = maxPower * movement;
-        float speed = rb2d.velocity.magnitude;
-        Vector2.ClampMagnitude(force, maxSpeed - speed);
-
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
         if (movement != Vector2.zero) {
+            Vector2 force = maxPower * movement;
+            float speed = rb2d.velocity.magnitude;
+            Vector2.ClampMagnitude(force, maxSpeed - speed);
             rb2d.AddForce(force);
         }
-        Debug.DrawLine(transform.position, transform.position + (Vector3)movement, Color.red);
+        //Debug.DrawLine(transform.position, transform.position + (Vector3)movement, Color.red);
     }
 }
