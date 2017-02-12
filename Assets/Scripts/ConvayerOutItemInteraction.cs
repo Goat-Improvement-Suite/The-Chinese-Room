@@ -39,11 +39,6 @@ public class ConvayerOutItemInteraction : Interaction
 
     public override bool CanInteractWith(CharacterItemInteraction player, ItemInteraction item)
     {
-        //Debug.LogWarning(player.color == color);
-        //Debug.LogWarning(item == null);
-        //Debug.LogWarning(player != null);
-        //Debug.LogWarning(holding != null);
-        //Debug.LogWarning("===================");
         return (holding != null && player != null && player.color == color && item == null);
     }
 

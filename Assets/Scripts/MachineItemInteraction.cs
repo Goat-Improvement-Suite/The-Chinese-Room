@@ -11,22 +11,34 @@ public class MachineItemInteraction : Interaction
     private CharacterItemInteraction currentPlayer;
     private int pushCount;
     private const int COUNT_LIMIT = 20;
-    private bool flush = false;
+    public GameObject pv;
+    private ProgressValues progresBar;
 
     public SpriteRenderer[] highlightSpriteRenderers;
 
     void Start()
     {
+        progresBar = pv.GetComponent<ProgressValues>();
+        progresBar.max = COUNT_LIMIT;
     }
 
 	void LateUpdate () {
-        if (currentItem != null && currentPlayer != null) {
-            if (Input.GetButtonDown("Interact_" + currentPlayer.playerNo)) {
-                pushCount++;               
+        if (currentItem != null&& currentPlayer != null) {
+            progresBar.learp = true;
+            progresBar.gameObject.SetActive(true);
+            if (currentPlayer && Input.GetButtonDown("Interact_" + currentPlayer.playerNo)) {
+                pushCount++;
+                progresBar.current = pushCount;
                 if (pushCount >= COUNT_LIMIT) {
                     complete();
                 }
             }
+        }
+        else
+        {
+            progresBar.learp = false;
+            progresBar.current = 0;
+            progresBar.gameObject.SetActive(true);
         }
     }
 
