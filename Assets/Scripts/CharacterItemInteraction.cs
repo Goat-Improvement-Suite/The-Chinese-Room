@@ -23,7 +23,7 @@ public class CharacterItemInteraction : Interaction
     protected GameObject interactingWith;
     protected ItemInteraction holding;
     public GameObject binicon;
-
+    public GameObject passicon;
     private Interaction hotInteraction;
     private Color savedInteractionSpriteColor; // Placeholder
     private const float playerInteractCooldown = 0.3f;
@@ -121,11 +121,13 @@ public class CharacterItemInteraction : Interaction
 
             }
             bool bin = false;
+            bool pass = false;
             if (collider)
             {
                 // Process action
                 if (collider.GetComponent<CharacterItemInteraction>())
                 {
+                    pass = true;
                     // Could give player an item
                     if (Input.GetButtonDown("Interact_" + playerNo))
                     {
@@ -313,7 +315,9 @@ public class CharacterItemInteraction : Interaction
                     }
                 }
             }
-        binicon.GetComponent<SpriteRenderer>().enabled = bin && holding;
+
+            passicon.GetComponent<SpriteRenderer>().enabled = pass && holding;
+            binicon.GetComponent<SpriteRenderer>().enabled = bin && holding;
         }
     }
 
