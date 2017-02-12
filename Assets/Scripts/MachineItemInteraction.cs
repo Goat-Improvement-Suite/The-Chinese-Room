@@ -20,7 +20,7 @@ public class MachineItemInteraction : Interaction
     }
 
 	void LateUpdate () {
-        if (currentItem != null) {
+        if (currentItem != null && currentPlayer != null) {
             if (Input.GetButtonDown("Interact_" + currentPlayer.playerNo)) {
                 pushCount++;               
                 if (pushCount >= COUNT_LIMIT) {
