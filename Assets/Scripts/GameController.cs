@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-    private int score;
+    [SerializeField] private int score;
     private float timeRemaining;
     public GameObject scoreText;
     public GameObject timeText;
     private AudioController audioController;
+    [SerializeField]
+    private GameObject ingameCanvas;
+    [SerializeField]
+    private GameObject endgameCanvas;
 
 	// Use this for initialization
 	void Start () {
@@ -40,7 +44,9 @@ public class GameController : MonoBehaviour {
 
 
     void endGame() {
-
+        ingameCanvas.SetActive(false);
+        endgameCanvas.SetActive(true);
+        GameObject.Find("FinalScoreText").GetComponent<Text>().text = score.ToString();
     }
 
     public float getTimeRemaining() {

@@ -28,8 +28,13 @@ public class CharacterItemInteraction : Interaction
 
     private CharacterMovement movement;
 
+<<<<<<< HEAD
     [SerializeField]
     private Sprite aPrompt;
+=======
+    [SerializeField] private Sprite aPrompt;
+    [SerializeField] private Sprite aPrompt2;
+>>>>>>> 2b69b0e6c34e8226d1d71e23ef9b36fc2b9221ca
 
     private GameObject buttonPrompt;
     void Start()
@@ -91,13 +96,19 @@ public class CharacterItemInteraction : Interaction
                 if (buttonPrompt != null)
                 {
                     buttonPrompt.transform.position = midpoint;
-                }
-                else
-                {
+
+                    if (hotInteraction.gameObject.GetComponent<MachineItemInteraction>() != null) {
+                        buttonPrompt.GetComponent<ButtonPromptController>().StartFlashing();
+                    } else {
+                        buttonPrompt.GetComponent<ButtonPromptController>().StopFlashing();
+                    }
+                } else {
                     buttonPrompt = new GameObject("player_" + playerNo + " Button Prompt");
                     buttonPrompt.transform.position = midpoint;
                     SpriteRenderer buttonPromptRenderer = buttonPrompt.AddComponent<SpriteRenderer>();
-                    buttonPromptRenderer.sprite = aPrompt;
+                    ButtonPromptController buttonPromptController = buttonPrompt.AddComponent<ButtonPromptController>();
+                    buttonPromptController.primary = aPrompt;
+                    buttonPromptController.secondary = aPrompt2;
                     buttonPromptRenderer.sortingLayerName = "Prompts";
                     buttonPrompt.transform.localScale = Vector3.Lerp(buttonPrompt.transform.localScale, Vector3.zero, 0.5f);
                 }
@@ -277,9 +288,14 @@ public class CharacterItemInteraction : Interaction
         }
     }
 
+<<<<<<< HEAD
     public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item)
     {
         return (holding == null && item != null);
+=======
+    public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
+        return (holding == null && item != null && interactingWith == null);
+>>>>>>> 2b69b0e6c34e8226d1d71e23ef9b36fc2b9221ca
     }
 
     public bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction)
