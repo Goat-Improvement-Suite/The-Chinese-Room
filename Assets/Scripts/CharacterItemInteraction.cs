@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameColor {
+public enum GameColor
+{
     Blue,
     Red,
     Green,
     Yellow
 }
 
-public class CharacterItemInteraction : Interaction {
+public class CharacterItemInteraction : Interaction
+{
     public float interactionRadius;
 
-    private LayerMask itemLayerMask, machineLayerMask, deskLayerMask, binLayerMask, holeLayerMask, playerLayerMask;
+    private LayerMask itemLayerMask, machineLayerMask, deskLayerMask, binLayerMask, holeLayerMask, playerLayerMask, inputConvayorLayerMask;
 
     internal int playerNo;
     public GameColor color;
@@ -26,16 +28,19 @@ public class CharacterItemInteraction : Interaction {
 
     private CharacterMovement movement;
 
-    [SerializeField] private Sprite aPrompt;
+    [SerializeField]
+    private Sprite aPrompt;
 
     private GameObject buttonPrompt;
-    void Start() {
+    void Start()
+    {
         itemLayerMask = LayerMask.GetMask("Items");
         machineLayerMask = LayerMask.GetMask("Machines");
         deskLayerMask = LayerMask.GetMask("Desks");
         binLayerMask = LayerMask.GetMask("Bins");
         holeLayerMask = LayerMask.GetMask("Hole");
         playerLayerMask = LayerMask.GetMask("Players");
+        inputConvayorLayerMask = LayerMask.GetMask("MachineConveyor");
         playerNo = GetComponent<CharacterMovement>().playerNo;
         movement = GetComponent<CharacterMovement>();
     }
@@ -43,12 +48,16 @@ public class CharacterItemInteraction : Interaction {
     public override void Highlight(GameObject player) { }
     public override void Unhighlight(GameObject player) { }
 
-    private Collider2D FindHotInteraction() {
-        LayerMask[] masks = new LayerMask[] { itemLayerMask, playerLayerMask, machineLayerMask, deskLayerMask, holeLayerMask, binLayerMask };
-        foreach (LayerMask mask in masks) {
+    private Collider2D FindHotInteraction()
+    {
+        LayerMask[] masks = new LayerMask[] { itemLayerMask, playerLayerMask, machineLayerMask, deskLayerMask, holeLayerMask, binLayerMask, inputConvayorLayerMask };
+        foreach (LayerMask mask in masks)
+        {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactionRadius, mask);
-            foreach (Collider2D collider in colliders) {
-                if (collider.GetComponent<Interaction>().CanInteractWith(this, holding)) {
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.GetComponent<Interaction>().CanInteractWith(this, holding))
+                {
                     return collider;
                 }
             }
@@ -56,13 +65,16 @@ public class CharacterItemInteraction : Interaction {
         return null;
     }
 
-    void Update() {
-        if (!interactingWith) {
+    void Update()
+    {
+        if (!interactingWith)
+        {
             Collider2D collider = FindHotInteraction();
 
             // Clear previous hot interaction
             Interaction nextHotInteraction = (collider ? collider.GetComponent<Interaction>() : null);
-            if (hotInteraction && hotInteraction != nextHotInteraction) {
+            if (hotInteraction && hotInteraction != nextHotInteraction)
+            {
                 //Stop highlighting
                 hotInteraction.Unhighlight(gameObject);
                 GameObject.Destroy(buttonPrompt);
@@ -71,13 +83,17 @@ public class CharacterItemInteraction : Interaction {
 
             // Set and handle hot interaction
             hotInteraction = nextHotInteraction;
-            if (hotInteraction) {
+            if (hotInteraction)
+            {
                 //Start highlighting
                 hotInteraction.Highlight(gameObject);
                 Vector3 midpoint = Vector3.Lerp(this.transform.position, hotInteraction.gameObject.transform.position, 0.5f);
-                if (buttonPrompt != null) {
+                if (buttonPrompt != null)
+                {
                     buttonPrompt.transform.position = midpoint;
-                } else {
+                }
+                else
+                {
                     buttonPrompt = new GameObject("player_" + playerNo + " Button Prompt");
                     buttonPrompt.transform.position = midpoint;
                     SpriteRenderer buttonPromptRenderer = buttonPrompt.AddComponent<SpriteRenderer>();
@@ -88,92 +104,170 @@ public class CharacterItemInteraction : Interaction {
 
             }
 
-            if (collider) {
+            if (collider)
+            {
                 // Process action
-                if (collider.GetComponent<CharacterItemInteraction>()) {
+                if (collider.GetComponent<CharacterItemInteraction>())
+                {
                     // Could give player an item
-                    if (Input.GetButtonDown("Interact_" + playerNo)) {
-                        if (collider.GetComponent<CharacterItemInteraction>().ReceiveItem(this, holding)) {
+                    if (Input.GetButtonDown("Interact_" + playerNo))
+                    {
+                        if (collider.GetComponent<CharacterItemInteraction>().ReceiveItem(this, holding))
+                        {
                             holding = null;
                         }
-                        else {
+                        else
+                        {
                             // This should not happen
                             Debug.Log("Warning: Could not give item");
                         }
                     }
                 }
-                else if (collider.GetComponent<TableItemInteraction>()) {
+                else if (collider.GetComponent<TableItemInteraction>())
+                {
                     // Could put item on table slot
-                    if (Input.GetButtonDown("Interact_" + playerNo)) {
-                        if (holding) {
-                            if (collider.GetComponent<TableItemInteraction>().ReceiveItem(this, holding)) {
+                    if (Input.GetButtonDown("Interact_" + playerNo))
+                    {
+                        if (holding)
+                        {
+                            if (collider.GetComponent<TableItemInteraction>().ReceiveItem(this, holding))
+                            {
                                 holding = null;
                             }
-                            else {
+                            else
+                            {
                                 // This should not happen
                                 Debug.Log("Warning: Could not put item on table");
                             }
                         }
-                        else {
-                            if (!collider.GetComponent<TableItemInteraction>().GiveItem(this, holding)) {
+                        else
+                        {
+                            if (!collider.GetComponent<TableItemInteraction>().GiveItem(this, holding))
+                            {
                                 // This should not happen
                                 Debug.Log("Warning: Could not pick item up from table");
                             }
                         }
                     }
                 }
-                else if (collider.GetComponent<MachineItemInteraction>()) {
+                else if (collider.GetComponent<ConvayerInItemInteraction>())
+                {
+                    // Could put item on table slot
+                    if (Input.GetButtonDown("Interact_" + playerNo))
+                    {
+                        if (holding)
+                        {
+                            if (collider.GetComponent<ConvayerInItemInteraction>().ReceiveItem(this, holding))
+                            { holding = null; }
+                            else
+                            {
+                                // This should not happen
+                                Debug.Log("Warning: Could not get item on Convayor");
+                            }
+                        }
+                        else
+                        {
+                        }
+                    }
+                }
+                else if (collider.GetComponent<ConvayerOutItemInteraction>())
+                {
+                    // Could put item on table slot
+                    if (Input.GetButtonDown("Interact_" + playerNo))
+                    {
+                        if (!holding)
+                        {
+                            if (!collider.GetComponent<ConvayerOutItemInteraction>().GiveItem(this, holding))
+                            {
+
+                                // This should not happen
+                                Debug.Log("Warning: Could not put item on Convayor");
+                            }
+                            else
+                            {
+                            }
+                        }
+                        else
+                        {
+                        }
+                    }
+                }
+                else if (collider.GetComponent<MachineItemInteraction>())
+                {
                     // Could process an item in a machine
-                    if (Input.GetButtonDown("Interact_" + playerNo)) {
-                        if (holding) {
-                            if (collider.GetComponent<MachineItemInteraction>().StartProcessingItem(this, holding)) {
-                                holding = null;
+                    if (Input.GetButtonDown("Interact_" + playerNo))
+                    {
+                        if (!holding)
+                        {
+                            if (collider.GetComponent<MachineItemInteraction>().StartProcessingItem(this))
+                            {
                                 interactingWith = collider.gameObject;
                                 movement.StartIgnoringInput();
                             }
-                            else {
+                            else
+                            {
                                 // This should not happen
                                 Debug.Log("Warning: Could not use machine");
                             }
                         }
-                        else {
+                        else
+                        {
                             // This should not happen
-                            Debug.Log("Warning: Wasn't holding an item what I should be");
+                            Debug.Log("Warning: Was holding an item what I should be");
                         }
                     }
                 }
-                else if (collider.GetComponent<BinItemInteraction>()) {
+                else if (collider.GetComponent<BinItemInteraction>())
+                {
                     // Could pick up an item
-                    if (Input.GetButtonDown("Interact_" + playerNo)) {
-                        if (holding) {
+                    if (Input.GetButtonDown("Interact_" + playerNo))
+                    {
+                        if (holding)
+                        {
                             collider.GetComponent<BinItemInteraction>().DestroyItem(this, holding);
                             holding = null;
-                        } else {
+                        }
+                        else
+                        {
                             // This should not happen
                             Debug.Log("Warning: Wasn't holding an item when I should be");
                         }
                     }
-                } else if (collider.GetComponent<HoleItemInteraction>()) {
+                }
+                else if (collider.GetComponent<HoleItemInteraction>())
+                {
                     // Could score a complete item
-                    if (Input.GetButtonDown("Interact_" + playerNo)) {
-                        if (holding) {
-                            if (collider.GetComponent<HoleItemInteraction>().ScoreItem(this, holding)) {
+                    if (Input.GetButtonDown("Interact_" + playerNo))
+                    {
+                        if (holding)
+                        {
+                            if (collider.GetComponent<HoleItemInteraction>().ScoreItem(this, holding))
+                            {
                                 holding = null;
                             }
-                        } else {
+                        }
+                        else
+                        {
                             // This should not happen
                             Debug.Log("Warning: Wasn't holding an item when I should be");
                         }
                     }
-                } else if (collider.GetComponent<ItemInteraction>()) {
+                }
+                else if (collider.GetComponent<ItemInteraction>())
+                {
                     // Could pick up an item
-                    if (Input.GetButtonDown("Interact_" + playerNo)) {
-                        if (!holding) {
-                            if (!ReceiveItem(null, collider.GetComponent<ItemInteraction>())) {
+                    if (Input.GetButtonDown("Interact_" + playerNo))
+                    {
+                        if (!holding)
+                        {
+                            if (!ReceiveItem(null, collider.GetComponent<ItemInteraction>()))
+                            {
                                 // This should not happen
                                 Debug.Log("Warning: Couldn't pick up item (already holding one?)");
                             }
-                        } else {
+                        }
+                        else
+                        {
                             // This should not happen
                             Debug.Log("Warning: Was holding an item when I shouldn't be");
                         }
@@ -183,12 +277,15 @@ public class CharacterItemInteraction : Interaction {
         }
     }
 
-    public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
+    public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item)
+    {
         return (holding == null && item != null);
     }
 
-    public bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
-        if (!holding) {
+    public bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction)
+    {
+        if (!holding)
+        {
             holding = itemInteraction;
             KillItemPhysics(holding);
             holding.MarkAsHeldBy(gameObject);
@@ -199,20 +296,27 @@ public class CharacterItemInteraction : Interaction {
         return false;
     }
 
-    public void ProcessingComplete(ItemInteraction item) {
+    public void ProcessingComplete()
+    {
         interactingWith = null;
         movement.StopIgnoringInput();
-        holding = item;
     }
 
-    internal void KillItemPhysics(ItemInteraction item) {
+    internal void KillItemPhysics(ItemInteraction item)
+    {
         item.GetComponent<Rigidbody2D>().isKinematic = true;
         item.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         item.GetComponent<Rigidbody2D>().angularVelocity = 0f;
     }
 
-    public void DestroyHolding() {
+    public void DestroyHolding()
+    {
         GameObject.Destroy(holding.gameObject);
         holding = null;
+    }
+
+    public ItemInteraction getHolding()
+    {
+        return holding;
     }
 }
