@@ -28,13 +28,9 @@ public class CharacterItemInteraction : Interaction
 
     private CharacterMovement movement;
 
-<<<<<<< HEAD
-    [SerializeField]
-    private Sprite aPrompt;
-=======
+
     [SerializeField] private Sprite aPrompt;
     [SerializeField] private Sprite aPrompt2;
->>>>>>> 2b69b0e6c34e8226d1d71e23ef9b36fc2b9221ca
 
     private GameObject buttonPrompt;
     void Start()
@@ -288,14 +284,9 @@ public class CharacterItemInteraction : Interaction
         }
     }
 
-<<<<<<< HEAD
-    public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item)
-    {
-        return (holding == null && item != null);
-=======
+
     public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
         return (holding == null && item != null && interactingWith == null);
->>>>>>> 2b69b0e6c34e8226d1d71e23ef9b36fc2b9221ca
     }
 
     public bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction)
