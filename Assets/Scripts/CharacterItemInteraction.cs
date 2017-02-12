@@ -113,7 +113,8 @@ public class CharacterItemInteraction : Interaction {
                                 // This should not happen
                                 Debug.Log("Warning: Could not put item on table");
                             }
-                        } else {
+                        }
+                        else {
                             if (!collider.GetComponent<TableItemInteraction>().GiveItem(this, holding)) {
                                 // This should not happen
                                 Debug.Log("Warning: Could not pick item up from table");
@@ -140,14 +141,26 @@ public class CharacterItemInteraction : Interaction {
                             Debug.Log("Warning: Wasn't holding an item what I should be");
                         }
                     }
-                } else if (collider.GetComponent<BinItemInteraction>()) {
+                }
+                else if (collider.GetComponent<BinItemInteraction>()) {
                     // Could pick up an item
                     if (Input.GetButtonDown("Interact_" + playerNo)) {
                         if (holding) {
                             collider.GetComponent<BinItemInteraction>().DestroyItem(this, holding);
                             holding = null;
+                        } else {
+                            // This should not happen
+                            Debug.Log("Warning: Wasn't holding an item when I should be");
                         }
-                        else {
+                    }
+                } else if (collider.GetComponent<HoleItemInteraction>()) {
+                    // Could score a complete item
+                    if (Input.GetButtonDown("Interact_" + playerNo)) {
+                        if (holding) {
+                            if (collider.GetComponent<HoleItemInteraction>().ScoreItem(this, holding)) {
+                                holding = null;
+                            }
+                        } else {
                             // This should not happen
                             Debug.Log("Warning: Wasn't holding an item when I should be");
                         }
