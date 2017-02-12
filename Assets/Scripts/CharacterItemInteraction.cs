@@ -43,29 +43,16 @@ public class CharacterItemInteraction : Interaction {
     public override void Unhighlight(GameObject player) { }
 
     private Collider2D FindHotInteraction() {
-        Collider2D result = null;
-        if (holding) {
-            LayerMask[] masks = new LayerMask[] { playerLayerMask, machineLayerMask, deskLayerMask, holeLayerMask, binLayerMask };
-            foreach (LayerMask mask in masks) {
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactionRadius, mask);
-                foreach (Collider2D collider in colliders) {
-                    if (collider && collider.GetComponent<Interaction>().CanInteractWith(this, holding)) {
-                        result = collider;
-                        break;
-                    } else {
-                        result = null;
-                    }
+        LayerMask[] masks = new LayerMask[] { itemLayerMask, playerLayerMask, machineLayerMask, deskLayerMask, holeLayerMask, binLayerMask };
+        foreach (LayerMask mask in masks) {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactionRadius, mask);
+            foreach (Collider2D collider in colliders) {
+                if (collider.GetComponent<Interaction>().CanInteractWith(this, holding)) {
+                    return collider;
                 }
             }
-        } else {
-            Collider2D collider = Physics2D.OverlapCircle(transform.position, interactionRadius, itemLayerMask);
-            if (collider && collider.GetComponent<Interaction>().CanInteractWith(this, holding)) {
-                result = collider;
-            } else {
-                result = null;
-            }
         }
-        return result;
+        return null;
     }
 
     void Update() {
@@ -117,12 +104,19 @@ public class CharacterItemInteraction : Interaction {
                 else if (collider.GetComponent<TableItemInteraction>()) {
                     // Could put item on table slot
                     if (Input.GetButtonDown("Interact_" + playerNo)) {
-                        if (collider.GetComponent<TableItemInteraction>().ReceiveItem(this, holding)) {
-                            holding = null;
-                        }
-                        else {
-                            // This should not happen
-                            Debug.Log("Warning: Could not put item on table");
+                        if (holding) {
+                            if (collider.GetComponent<TableItemInteraction>().ReceiveItem(this, holding)) {
+                                holding = null;
+                            }
+                            else {
+                                // This should not happen
+                                Debug.Log("Warning: Could not put item on table");
+                            }
+                        } else {
+                            if (!collider.GetComponent<TableItemInteraction>().GiveItem(this, holding)) {
+                                // This should not happen
+                                Debug.Log("Warning: Could not pick item up from table");
+                            }
                         }
                     }
                 }

@@ -20,14 +20,24 @@ public class TableItemInteraction : Interaction {
     }
 
     public override bool CanInteractWith(CharacterItemInteraction player, ItemInteraction item) {
-        return (player != null && player.color == color && item != null);
+        return (holding == null && player != null && player.color == color && item != null) || 
+               (holding != null && player != null && player.color == color && item == null);
+    }
+
+    public bool GiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
+        if (holding && playerItemInteraction.ReceiveItem(null, holding)) {
+            holding = null;
+            return true;
+        }
+        return false;
     }
 
     public bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
-        Debug.Log("HERE");
         if (!holding) {
             holding = itemInteraction;
+            holding.MarkAsHeldBy(gameObject);
             holding.transform.parent = transform;
+            holding.transform.position = transform.position;
             return true;
         }
         return false;
