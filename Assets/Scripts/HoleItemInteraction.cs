@@ -24,6 +24,7 @@ public class HoleItemInteraction : Interaction {
 
     public bool ScoreItem(CharacterItemInteraction player, ItemInteraction item) {
         if (item != null && item.hasAllColors()) {
+            GetComponent<AudioSource>().Play();
             DestroyObject(item.gameObject);
             gameController.addPoint();
             return true;

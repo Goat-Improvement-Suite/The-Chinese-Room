@@ -199,6 +199,7 @@ public class CharacterItemInteraction : Interaction {
         if (!holding) {
             holding = itemInteraction;
             KillItemPhysics(holding);
+            holding.Sound();
             holding.MarkAsHeldBy(gameObject);
             holding.transform.parent = transform;
             holding.transform.position = holdPoint.position;

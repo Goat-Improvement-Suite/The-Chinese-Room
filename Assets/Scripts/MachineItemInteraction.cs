@@ -18,7 +18,7 @@ public class MachineItemInteraction : Interaction {
 	void LateUpdate () {
         if (currentItem != null) {
             if (Input.GetButtonDown("Interact_" + currentPlayer.playerNo)) {
-                pushCount++;
+                pushCount++;               
                 if (pushCount >= COUNT_LIMIT) {
                     complete();
                 }
@@ -44,6 +44,7 @@ public class MachineItemInteraction : Interaction {
 
     public bool StartProcessingItem(CharacterItemInteraction character, ItemInteraction item) {
         if (CanInteractWith(character, item)) {
+            GetComponent<AudioSource>().Play();
             currentItem = item;
             currentPlayer = character;
             pushCount = 0;
@@ -54,6 +55,7 @@ public class MachineItemInteraction : Interaction {
 
     private void complete() {
         //add color
+        GetComponent<AudioSource>().Stop();
         currentItem.addColor(color);
         currentPlayer.ProcessingComplete(currentItem);
         currentPlayer = null;

@@ -11,12 +11,14 @@ public class PlayerFall : MonoBehaviour {
 	}
 	
 	void Update () {
-	}
+       
+    }
 
     void OnTriggerEnter2D(Collider2D collider) {
         Debug.Log("Ahhh");
         if (collider.gameObject.layer == playerLayer) {
             Debug.Log("Fall");
+            collider.gameObject.GetComponent<AudioSource>().Play();
             StartCoroutine(AnimatePlayerFall(collider.gameObject));
         }
     }

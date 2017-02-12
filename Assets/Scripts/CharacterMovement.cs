@@ -30,6 +30,7 @@ public class CharacterMovement : MonoBehaviour {
 
     private void FixedUpdate() {
         if (!ignoreInput) {
+
             //Store the current horizontal input in the float moveHorizontal.
             float moveHorizontal = Input.GetAxisRaw("Horizontal" + "_" + playerNo);
 

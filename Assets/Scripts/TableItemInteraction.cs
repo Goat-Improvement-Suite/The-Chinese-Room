@@ -35,6 +35,7 @@ public class TableItemInteraction : Interaction {
     public bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
         if (!holding) {
             holding = itemInteraction;
+            holding.Sound();
             holding.MarkAsHeldBy(gameObject);
             holding.transform.parent = transform;
             holding.transform.position = transform.position;

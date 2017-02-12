@@ -27,6 +27,10 @@ public class ItemInteraction : Interaction {
         yellowSymbolSpriteRenderer.enabled = yellow;
     }
 
+    public void Sound() {
+        GetComponent<AudioSource>().Play();
+    }
+
     public override void Highlight(GameObject player) {
         outlineSpriteRenderer.enabled = true;
     }

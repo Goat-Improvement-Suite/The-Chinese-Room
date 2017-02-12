@@ -31,6 +31,7 @@ public class BinItemInteraction : Interaction {
     }
 
     public void DestroyItem(CharacterItemInteraction player, ItemInteraction item) {
+        GetComponent<AudioSource>().Play();
         GameObject.Destroy(item.gameObject);
     }
 
