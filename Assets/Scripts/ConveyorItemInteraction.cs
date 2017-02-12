@@ -19,7 +19,10 @@ public class ConveyorItemInteraction : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        UpdateBearings();
+        Transform t = gameObject.GetComponent<Transform>();
+        muzzleSpeed *= (12.5f * t.lossyScale.y)/100;
+
+        UpdateBearings();       
 
         time = period - startDelay;
     }
