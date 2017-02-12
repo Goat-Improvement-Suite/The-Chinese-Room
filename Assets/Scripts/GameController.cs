@@ -38,6 +38,9 @@ public class GameController : MonoBehaviour {
         timeText.GetComponent<Text>().text = fullTimeStr.Remove(fullTimeStr.Length - 4).Substring(3);
     }
 
+    public int getScore() {
+        return score;
+    }
     public void addPoint() {
         score += 1;
     }

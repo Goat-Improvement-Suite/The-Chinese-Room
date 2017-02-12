@@ -351,8 +351,10 @@ public class CharacterItemInteraction : Interaction
 
     public void DestroyHolding()
     {
-        GameObject.Destroy(holding.gameObject);
-        holding = null;
+        if (holding) {
+            GameObject.Destroy(holding.gameObject);
+            holding = null;
+        }
     }
 
     public ItemInteraction getHolding()

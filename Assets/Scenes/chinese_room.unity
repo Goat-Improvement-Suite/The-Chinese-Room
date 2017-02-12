@@ -138,6 +138,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180.00002
       objectReference: {fileID: 0}
+    - target: {fileID: 114725427653470228, guid: 9b2b6ba11f5e3b24b9b6e202515ef06b,
+        type: 2}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 704436648}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b2b6ba11f5e3b24b9b6e202515ef06b, type: 2}
   m_IsPrefabParent: 0
@@ -663,11 +668,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!212 &142677195 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212291277980947082, guid: 657302dd5f8002742ad88b3504a5da4b,
-    type: 2}
-  m_PrefabInternal: {fileID: 995832775}
 --- !u!1001 &187159341
 Prefab:
   m_ObjectHideFlags: 0
@@ -727,11 +727,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87784b70be32b8c4b9f77f0f2bc70734, type: 2}
   m_IsPrefabParent: 0
---- !u!212 &198034405 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212737381336667280, guid: 657302dd5f8002742ad88b3504a5da4b,
-    type: 2}
-  m_PrefabInternal: {fileID: 995832775}
 --- !u!1 &202035583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,6 +1216,11 @@ Prefab:
       propertyPath: m_Name
       value: Conveyor North
       objectReference: {fileID: 0}
+    - target: {fileID: 114725427653470228, guid: 9b2b6ba11f5e3b24b9b6e202515ef06b,
+        type: 2}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 704436648}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b2b6ba11f5e3b24b9b6e202515ef06b, type: 2}
   m_IsPrefabParent: 0
@@ -4078,11 +4078,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!212 &906271186 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212291122604183894, guid: 657302dd5f8002742ad88b3504a5da4b,
-    type: 2}
-  m_PrefabInternal: {fileID: 995832775}
 --- !u!1 &910696243
 GameObject:
   m_ObjectHideFlags: 0
@@ -4470,37 +4465,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
         type: 2}
-      propertyPath: outlineSpriteRenderer
-      value: 
-      objectReference: {fileID: 906271186}
-    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
-        type: 2}
-      propertyPath: blueSymbolSpriteRenderer
-      value: 
-      objectReference: {fileID: 1622356728}
-    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
-        type: 2}
-      propertyPath: greenSymbolSpriteRenderer
-      value: 
-      objectReference: {fileID: 1718466886}
-    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
-        type: 2}
-      propertyPath: redSymbolSpriteRenderer
-      value: 
-      objectReference: {fileID: 198034405}
-    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
-        type: 2}
-      propertyPath: yellowSymbolSpriteRenderer
-      value: 
-      objectReference: {fileID: 142677195}
-    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
-        type: 2}
-      propertyPath: blue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
-        type: 2}
-      propertyPath: green
+      propertyPath: yellow
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
@@ -4510,7 +4475,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
         type: 2}
-      propertyPath: yellow
+      propertyPath: green
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932027930020208, guid: 657302dd5f8002742ad88b3504a5da4b,
+        type: 2}
+      propertyPath: blue
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8100,11 +8070,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!212 &1622356728 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212934163024183530, guid: 657302dd5f8002742ad88b3504a5da4b,
-    type: 2}
-  m_PrefabInternal: {fileID: 995832775}
 --- !u!1 &1662545045
 GameObject:
   m_ObjectHideFlags: 0
@@ -8340,11 +8305,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4258316961477022, guid: 87784b70be32b8c4b9f77f0f2bc70734,
     type: 2}
   m_PrefabInternal: {fileID: 1200443393}
---- !u!212 &1718466886 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212105671908344354, guid: 657302dd5f8002742ad88b3504a5da4b,
-    type: 2}
-  m_PrefabInternal: {fileID: 995832775}
 --- !u!1 &1728589448
 GameObject:
   m_ObjectHideFlags: 0
