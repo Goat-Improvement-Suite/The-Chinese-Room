@@ -27,6 +27,7 @@ public class CharacterItemInteraction : Interaction {
     private CharacterMovement movement;
 
     [SerializeField] private Sprite aPrompt;
+    [SerializeField] private Sprite aPrompt2;
 
     private GameObject buttonPrompt;
     void Start() {
@@ -77,11 +78,18 @@ public class CharacterItemInteraction : Interaction {
                 Vector3 midpoint = Vector3.Lerp(this.transform.position, hotInteraction.gameObject.transform.position, 0.5f);
                 if (buttonPrompt != null) {
                     buttonPrompt.transform.position = midpoint;
+                    if (hotInteraction.gameObject.GetComponent<MachineItemInteraction>() != null) {
+                        buttonPrompt.GetComponent<ButtonPromptController>().StartFlashing();
+                    } else {
+                        buttonPrompt.GetComponent<ButtonPromptController>().StopFlashing();
+                    }
                 } else {
                     buttonPrompt = new GameObject("player_" + playerNo + " Button Prompt");
                     buttonPrompt.transform.position = midpoint;
                     SpriteRenderer buttonPromptRenderer = buttonPrompt.AddComponent<SpriteRenderer>();
-                    buttonPromptRenderer.sprite = aPrompt;
+                    ButtonPromptController buttonPromptController = buttonPrompt.AddComponent<ButtonPromptController>();
+                    buttonPromptController.primary = aPrompt;
+                    buttonPromptController.secondary = aPrompt2;
                     buttonPromptRenderer.sortingLayerName = "Prompts";
                     buttonPrompt.transform.localScale = Vector3.Lerp(buttonPrompt.transform.localScale, Vector3.zero, 0.5f);
                 }

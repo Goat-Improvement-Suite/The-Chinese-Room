@@ -3897,6 +3897,7 @@ MonoBehaviour:
   color: 0
   holdPoint: {fileID: 293553764}
   aPrompt: {fileID: 21300000, guid: 3b64c01727b525e449125cc7942b258c, type: 3}
+  aPrompt2: {fileID: 21300000, guid: 6fbf104edff69dc41b87cc59d432c3c4, type: 3}
 --- !u!114 &1010621611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5259,6 +5260,7 @@ MonoBehaviour:
   color: 1
   holdPoint: {fileID: 930227088}
   aPrompt: {fileID: 21300000, guid: 3b64c01727b525e449125cc7942b258c, type: 3}
+  aPrompt2: {fileID: 21300000, guid: 6fbf104edff69dc41b87cc59d432c3c4, type: 3}
 --- !u!114 &1383459043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7350,6 +7352,7 @@ MonoBehaviour:
   color: 2
   holdPoint: {fileID: 656309805}
   aPrompt: {fileID: 21300000, guid: 3b64c01727b525e449125cc7942b258c, type: 3}
+  aPrompt2: {fileID: 21300000, guid: 6fbf104edff69dc41b87cc59d432c3c4, type: 3}
 --- !u!114 &1967058137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7936,6 +7939,7 @@ MonoBehaviour:
   color: 3
   holdPoint: {fileID: 1325619219}
   aPrompt: {fileID: 21300000, guid: 3b64c01727b525e449125cc7942b258c, type: 3}
+  aPrompt2: {fileID: 21300000, guid: 6fbf104edff69dc41b87cc59d432c3c4, type: 3}
 --- !u!114 &2118929921
 MonoBehaviour:
   m_ObjectHideFlags: 0
