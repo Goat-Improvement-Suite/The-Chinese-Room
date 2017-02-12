@@ -5,6 +5,9 @@ using UnityEngine;
 public class TableItemInteraction : Interaction {
     public GameColor color;
 
+    public bool allowAnyPlayerPickup;
+    public bool allowAnyPlayerPutdown;
+
     private ItemInteraction holding;
 
     void Start () {
@@ -20,8 +23,8 @@ public class TableItemInteraction : Interaction {
     }
 
     public override bool CanInteractWith(CharacterItemInteraction player, ItemInteraction item) {
-        return (holding == null && player != null && player.color == color && item != null) || 
-               (holding != null && player != null && player.color == color && item == null);
+        return (holding == null && player != null && (player.color == color || allowAnyPlayerPutdown) && item != null) || 
+               (holding != null && player != null && (player.color == color || allowAnyPlayerPickup) && item == null);
     }
 
     public bool GiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {

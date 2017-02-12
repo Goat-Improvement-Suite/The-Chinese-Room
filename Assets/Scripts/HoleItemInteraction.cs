@@ -5,6 +5,9 @@ using UnityEngine;
 public class HoleItemInteraction : Interaction {
     public GameController gameController;
 
+    public CharacterItemInteraction redPlayer, bluePlayer, greenPlayer, yellowPlayer;
+    public Glow glowEffect;
+
 	void Start () {
 	}
 
@@ -16,6 +19,7 @@ public class HoleItemInteraction : Interaction {
     }
 
     void Update () {
+        glowEffect.glowing = (redPlayer.HasCompletePaper() || bluePlayer.HasCompletePaper() || greenPlayer.HasCompletePaper() || yellowPlayer.HasCompletePaper());
 	}
 
     public override bool CanInteractWith(CharacterItemInteraction player, ItemInteraction item) {

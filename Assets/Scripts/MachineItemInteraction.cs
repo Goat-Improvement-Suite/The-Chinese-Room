@@ -23,7 +23,7 @@ public class MachineItemInteraction : Interaction
     }
 
 	void LateUpdate () {
-        if (currentItem != null) {
+        if (currentItem != null&& currentPlayer != null) {
             progresBar.learp = true;
             progresBar.gameObject.SetActive(true);
             if (currentPlayer && Input.GetButtonDown("Interact_" + currentPlayer.playerNo)) {
