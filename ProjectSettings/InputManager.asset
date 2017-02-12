@@ -188,7 +188,7 @@ InputManager:
     negativeButton: 
     positiveButton: joystick 3 button 0
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: page up
     gravity: 0
     dead: 0.19
     sensitivity: 1
@@ -204,23 +204,7 @@ InputManager:
     negativeButton: 
     positiveButton: joystick 4 button 0
     altNegativeButton: 
-    altPositiveButton: 
-    gravity: 0
-    dead: 0.19
-    sensitivity: 1
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 4
-  - serializedVersion: 3
-    m_Name: Interact_3
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: space
-    altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: space
     gravity: 0
     dead: 0.19
     sensitivity: 1
@@ -275,6 +259,22 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
+    axis: 0
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: Horizontal_2
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: delete
+    positiveButton: page down
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
     axis: 0
     joyNum: 3
   - serializedVersion: 3
@@ -387,6 +387,22 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
+    axis: 1
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: Vertical_2
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: end
+    positiveButton: home
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
     axis: 1
     joyNum: 3
   - serializedVersion: 3
