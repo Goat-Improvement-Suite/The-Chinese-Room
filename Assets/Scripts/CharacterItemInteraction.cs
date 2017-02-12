@@ -25,6 +25,8 @@ public class CharacterItemInteraction : Interaction
 
     private Interaction hotInteraction;
     private Color savedInteractionSpriteColor; // Placeholder
+    private const float playerInteractCooldown = 0.3f;
+    private float lastPlayerInteractTime = -playerInteractCooldown;
 
     private CharacterMovement movement;
 
@@ -119,14 +121,23 @@ public class CharacterItemInteraction : Interaction
                     // Could give player an item
                     if (Input.GetButtonDown("Interact_" + playerNo))
                     {
-                        if (collider.GetComponent<CharacterItemInteraction>().ReceiveItem(this, holding))
-                        {
-                            holding = null;
-                        }
-                        else
-                        {
-                            // This should not happen
-                            Debug.Log("Warning: Could not give item");
+                        if (holding) {
+                            // Try to give item to other player
+                            if (collider.GetComponent<CharacterItemInteraction>().ReceiveItemFromPlayer(this, holding)) {
+                                lastPlayerInteractTime = Time.time;
+                                holding = null;
+                            } else {
+                                // This should not happen
+                                Debug.Log("Warning: Could not give item");
+                            }
+                        } else {
+                            // Try to take item from other player
+                            if (collider.GetComponent<CharacterItemInteraction>().GiveItemToPlayer(this)) {
+                                lastPlayerInteractTime = Time.time;
+                            } else {
+                                // This should not happen
+                                Debug.Log("Warning: Could not take item");
+                            }
                         }
                     }
                 }
@@ -220,7 +231,7 @@ public class CharacterItemInteraction : Interaction
                         else
                         {
                             // This should not happen
-                            Debug.Log("Warning: Was holding an item what I should be");
+                            Debug.Log("Warning: Was holding an item when I shouldn't be");
                         }
                     }
                 }
@@ -286,7 +297,28 @@ public class CharacterItemInteraction : Interaction
 
 
     public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
-        return (holding == null && item != null && interactingWith == null);
+        if (Time.time - lastPlayerInteractTime < playerInteractCooldown) { return false; }
+        return (holding == null && item != null && interactingWith == null) ||
+               (holding != null && item == null && interactingWith == null);
+    }
+
+    public bool GiveItemToPlayer(CharacterItemInteraction otherPlayer) {
+        if (holding) {
+            if (otherPlayer.ReceiveItem(this, holding)) {
+                lastPlayerInteractTime = Time.time;
+                holding = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool ReceiveItemFromPlayer(CharacterItemInteraction player, ItemInteraction item) {
+        bool result = ReceiveItem(player, item);
+        if (result) {
+            lastPlayerInteractTime = Time.time;
+        }
+        return result;
     }
 
     public bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction)
