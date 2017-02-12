@@ -22,6 +22,7 @@ public class CharacterItemInteraction : Interaction
 
     protected GameObject interactingWith;
     protected ItemInteraction holding;
+    public GameObject binicon;
 
     private Interaction hotInteraction;
     private Color savedInteractionSpriteColor; // Placeholder
@@ -31,8 +32,10 @@ public class CharacterItemInteraction : Interaction
     private CharacterMovement movement;
 
 
-    [SerializeField] private Sprite aPrompt;
-    [SerializeField] private Sprite aPrompt2;
+    [SerializeField]
+    private Sprite aPrompt;
+    [SerializeField]
+    private Sprite aPrompt2;
 
     private GameObject buttonPrompt;
     void Start()
@@ -95,12 +98,17 @@ public class CharacterItemInteraction : Interaction
                 {
                     buttonPrompt.transform.position = midpoint;
 
-                    if (hotInteraction.gameObject.GetComponent<MachineItemInteraction>() != null) {
+                    if (hotInteraction.gameObject.GetComponent<MachineItemInteraction>() != null)
+                    {
                         buttonPrompt.GetComponent<ButtonPromptController>().StartFlashing();
-                    } else {
+                    }
+                    else
+                    {
                         buttonPrompt.GetComponent<ButtonPromptController>().StopFlashing();
                     }
-                } else {
+                }
+                else
+                {
                     buttonPrompt = new GameObject("player_" + playerNo + " Button Prompt");
                     buttonPrompt.transform.position = midpoint;
                     SpriteRenderer buttonPromptRenderer = buttonPrompt.AddComponent<SpriteRenderer>();
@@ -112,7 +120,7 @@ public class CharacterItemInteraction : Interaction
                 }
 
             }
-
+            bool bin = false;
             if (collider)
             {
                 // Process action
@@ -121,20 +129,29 @@ public class CharacterItemInteraction : Interaction
                     // Could give player an item
                     if (Input.GetButtonDown("Interact_" + playerNo))
                     {
-                        if (holding) {
+                        if (holding)
+                        {
                             // Try to give item to other player
-                            if (collider.GetComponent<CharacterItemInteraction>().ReceiveItemFromPlayer(this, holding)) {
+                            if (collider.GetComponent<CharacterItemInteraction>().ReceiveItemFromPlayer(this, holding))
+                            {
                                 lastPlayerInteractTime = Time.time;
                                 holding = null;
-                            } else {
+                            }
+                            else
+                            {
                                 // This should not happen
                                 Debug.Log("Warning: Could not give item");
                             }
-                        } else {
+                        }
+                        else
+                        {
                             // Try to take item from other player
-                            if (collider.GetComponent<CharacterItemInteraction>().GiveItemToPlayer(this)) {
+                            if (collider.GetComponent<CharacterItemInteraction>().GiveItemToPlayer(this))
+                            {
                                 lastPlayerInteractTime = Time.time;
-                            } else {
+                            }
+                            else
+                            {
                                 // This should not happen
                                 Debug.Log("Warning: Could not take item");
                             }
@@ -237,6 +254,7 @@ public class CharacterItemInteraction : Interaction
                 }
                 else if (collider.GetComponent<BinItemInteraction>())
                 {
+                    bin = true;
                     // Could pick up an item
                     if (Input.GetButtonDown("Interact_" + playerNo))
                     {
@@ -252,59 +270,67 @@ public class CharacterItemInteraction : Interaction
                         }
                     }
                 }
-                else if (collider.GetComponent<HoleItemInteraction>())
+                else
                 {
-                    // Could score a complete item
-                    if (Input.GetButtonDown("Interact_" + playerNo))
+                    if (collider.GetComponent<HoleItemInteraction>())
                     {
-                        if (holding)
+                        // Could score a complete item
+                        if (Input.GetButtonDown("Interact_" + playerNo))
                         {
-                            if (collider.GetComponent<HoleItemInteraction>().ScoreItem(this, holding))
+                            if (holding)
                             {
-                                holding = null;
+                                if (collider.GetComponent<HoleItemInteraction>().ScoreItem(this, holding))
+                                {
+                                    holding = null;
+                                }
                             }
-                        }
-                        else
-                        {
-                            // This should not happen
-                            Debug.Log("Warning: Wasn't holding an item when I should be");
-                        }
-                    }
-                }
-                else if (collider.GetComponent<ItemInteraction>())
-                {
-                    // Could pick up an item
-                    if (Input.GetButtonDown("Interact_" + playerNo))
-                    {
-                        if (!holding)
-                        {
-                            if (!ReceiveItem(null, collider.GetComponent<ItemInteraction>()))
+                            else
                             {
                                 // This should not happen
-                                Debug.Log("Warning: Couldn't pick up item (already holding one?)");
+                                Debug.Log("Warning: Wasn't holding an item when I should be");
                             }
                         }
-                        else
+                    }
+                    else if (collider.GetComponent<ItemInteraction>())
+                    {
+                        // Could pick up an item
+                        if (Input.GetButtonDown("Interact_" + playerNo))
                         {
-                            // This should not happen
-                            Debug.Log("Warning: Was holding an item when I shouldn't be");
+                            if (!holding)
+                            {
+                                if (!ReceiveItem(null, collider.GetComponent<ItemInteraction>()))
+                                {
+                                    // This should not happen
+                                    Debug.Log("Warning: Couldn't pick up item (already holding one?)");
+                                }
+                            }
+                            else
+                            {
+                                // This should not happen
+                                Debug.Log("Warning: Was holding an item when I shouldn't be");
+                            }
                         }
                     }
                 }
             }
+        binicon.GetComponent<SpriteRenderer>().enabled = bin && holding;
         }
     }
 
 
-    public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
+    public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item)
+    {
         if (Time.time - lastPlayerInteractTime < playerInteractCooldown) { return false; }
         return (holding == null && item != null && interactingWith == null) ||
                (holding != null && item == null && interactingWith == null);
     }
 
-    public bool GiveItemToPlayer(CharacterItemInteraction otherPlayer) {
-        if (holding) {
-            if (otherPlayer.ReceiveItem(this, holding)) {
+    public bool GiveItemToPlayer(CharacterItemInteraction otherPlayer)
+    {
+        if (holding)
+        {
+            if (otherPlayer.ReceiveItem(this, holding))
+            {
                 lastPlayerInteractTime = Time.time;
                 holding = null;
                 return true;
@@ -313,9 +339,11 @@ public class CharacterItemInteraction : Interaction
         return false;
     }
 
-    public bool ReceiveItemFromPlayer(CharacterItemInteraction player, ItemInteraction item) {
+    public bool ReceiveItemFromPlayer(CharacterItemInteraction player, ItemInteraction item)
+    {
         bool result = ReceiveItem(player, item);
-        if (result) {
+        if (result)
+        {
             lastPlayerInteractTime = Time.time;
         }
         return result;
@@ -360,7 +388,8 @@ public class CharacterItemInteraction : Interaction
         return holding;
     }
 
-    public bool HasCompletePaper() {
+    public bool HasCompletePaper()
+    {
         return (holding != null && holding.hasAllColors());
     }
 }
