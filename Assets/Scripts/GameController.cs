@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         score = 0;
-        timeRemaining = 90f;
+        timeRemaining = 120f;
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
 	}
 	
@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour {
         if (timeRemaining <= 0) {
             audioController.StopPanic();
             endGame();
-        } else if (timeRemaining <= 15) {
+        } else if (timeRemaining <= 20) {
             audioController.StartPanic();
         }
 
