@@ -20,7 +20,7 @@ public class ConvayerInItemInteraction : Interaction
     public override void Highlight(GameObject player)
     {
     }
-    
+
     public override void Unhighlight(GameObject player)
     {
     }
@@ -29,15 +29,20 @@ public class ConvayerInItemInteraction : Interaction
     {
         if (holding)
         {
-            if ((holding.transform.position - vanishPoint.transform.position).magnitude < 0.5f )
+            if ((holding.transform.position - vanishPoint.transform.position).magnitude < 0.5f)
             {
-                if (machine.StartProcessingItem(holding))
-                {
-                    holding.MarkAsHeldBy(machine.gameObject);
-                    holding.transform.parent = machine.gameObject.transform;
-                    holding.transform.position = machine.gameObject.transform.position;
-                    holding = null;
-                }
+                if (machine.ReadyToProcess())
+                    if (machine.StartProcessingItem(holding))
+                    {
+                        holding.MarkAsHeldBy(machine.gameObject);
+                        holding.transform.parent = machine.gameObject.transform;
+                        holding.transform.position = machine.gameObject.transform.position;
+                        holding = null;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("i have  been unable to start processing");
+                    }
             }
             else
                 holding.transform.position = Vector3.Lerp(holding.transform.position, vanishPoint.transform.position, 0.1f);
