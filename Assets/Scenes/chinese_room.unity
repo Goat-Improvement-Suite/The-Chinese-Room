@@ -5412,6 +5412,7 @@ MonoBehaviour:
   interactionRadius: 0.5
   color: 0
   holdPoint: {fileID: 293553764}
+  binicon: {fileID: 0}
   aPrompt: {fileID: 21300000, guid: 3b64c01727b525e449125cc7942b258c, type: 3}
   aPrompt2: {fileID: 21300000, guid: 6fbf104edff69dc41b87cc59d432c3c4, type: 3}
 --- !u!114 &1010621611
@@ -7440,6 +7441,7 @@ MonoBehaviour:
   interactionRadius: 0.5
   color: 1
   holdPoint: {fileID: 930227088}
+  binicon: {fileID: 0}
   aPrompt: {fileID: 21300000, guid: 3b64c01727b525e449125cc7942b258c, type: 3}
   aPrompt2: {fileID: 21300000, guid: 6fbf104edff69dc41b87cc59d432c3c4, type: 3}
 --- !u!114 &1383459043
@@ -10397,6 +10399,7 @@ MonoBehaviour:
   interactionRadius: 0.5
   color: 2
   holdPoint: {fileID: 656309805}
+  binicon: {fileID: 0}
   aPrompt: {fileID: 21300000, guid: 3b64c01727b525e449125cc7942b258c, type: 3}
   aPrompt2: {fileID: 21300000, guid: 6fbf104edff69dc41b87cc59d432c3c4, type: 3}
 --- !u!114 &1967058137
@@ -10860,10 +10863,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 1248049302760284, guid: dbbe2451d526b444aa53152838d90768, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbbe2451d526b444aa53152838d90768, type: 2}
   m_IsPrefabParent: 0
@@ -11160,6 +11159,7 @@ MonoBehaviour:
   interactionRadius: 0.5
   color: 3
   holdPoint: {fileID: 1325619219}
+  binicon: {fileID: 0}
   aPrompt: {fileID: 21300000, guid: 3b64c01727b525e449125cc7942b258c, type: 3}
   aPrompt2: {fileID: 21300000, guid: 6fbf104edff69dc41b87cc59d432c3c4, type: 3}
 --- !u!114 &2118929921
