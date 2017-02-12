@@ -192,7 +192,7 @@ public class CharacterItemInteraction : Interaction {
     }
 
     public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item) {
-        return (holding == null && item != null);
+        return (holding == null && item != null && interactingWith == null);
     }
 
     public bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
