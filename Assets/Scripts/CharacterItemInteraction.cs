@@ -359,4 +359,8 @@ public class CharacterItemInteraction : Interaction
     {
         return holding;
     }
+
+    public bool HasCompletePaper() {
+        return (holding != null && holding.hasAllColors());
+    }
 }

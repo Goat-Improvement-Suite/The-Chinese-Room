@@ -5299,6 +5299,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 704436648}
+  redPlayer: {fileID: 1383459042}
+  bluePlayer: {fileID: 1010621610}
+  greenPlayer: {fileID: 1967058136}
+  yellowPlayer: {fileID: 2118929920}
+  glowEffect: {fileID: 990212102}
 --- !u!1 &1053542517
 GameObject:
   m_ObjectHideFlags: 0
