@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ConveyorItemInteraction : MonoBehaviour {
 
+    public GameController gameController;
     private int time = 0;
     public int period;
     public int startDelay;
@@ -39,7 +40,9 @@ public class ConveyorItemInteraction : MonoBehaviour {
          UpdateBearings();*/
 
         time++;
-        if (time > period) {
+        bool doSpawn = (GameObject.FindGameObjectsWithTag("Paper").Length < gameController.getScore())
+                       && (time > period);
+        if (doSpawn) {
             time = 0;
             //generate new item
             Transform t1 = Instantiate(item, new Vector3(x, y, 0), Quaternion.identity);
