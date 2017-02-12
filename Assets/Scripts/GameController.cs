@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         score = 0;
-        timeRemaining = 20f;
+        timeRemaining = 120f;
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
 	}
 	
