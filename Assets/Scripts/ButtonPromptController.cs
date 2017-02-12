@@ -17,7 +17,7 @@ public class ButtonPromptController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (flashing) {
-            if (timerCount > 0.2) {
+            if (timerCount > 0.1) {
                 if (this.GetComponent<SpriteRenderer>().sprite == primary) {
                     this.GetComponent<SpriteRenderer>().sprite = secondary;
                 } else {
