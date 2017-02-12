@@ -14,6 +14,9 @@ public class CharacterMovement : MonoBehaviour {
     private bool ignoreInput = false;
 
     private SpriteRenderer spriteRenderer;
+    public SpriteRenderer headSpriteRenderer;
+    public SpriteRenderer hand1SpriteRenderer;
+    public SpriteRenderer hand2SpriteRenderer;
 
     // Use this for initialization
     void Start () {
@@ -25,7 +28,11 @@ public class CharacterMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.DrawLine(transform.position, transform.position + (Vector3)rb2d.velocity);
-        spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y * 10);
+        int sortOrder = -Mathf.RoundToInt(transform.position.y * 10);
+        spriteRenderer.sortingOrder = sortOrder;
+        headSpriteRenderer.sortingOrder = sortOrder + 1;
+        hand1SpriteRenderer.sortingOrder = sortOrder + 1;
+        hand2SpriteRenderer.sortingOrder = sortOrder + 1;
     }
 
     private void FixedUpdate() {

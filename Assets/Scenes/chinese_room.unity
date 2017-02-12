@@ -5309,6 +5309,9 @@ MonoBehaviour:
   maxPower: 50
   maxSpeed: 4
   playerNo: 0
+  headSpriteRenderer: {fileID: 1388368531}
+  hand1SpriteRenderer: {fileID: 1135081416}
+  hand2SpriteRenderer: {fileID: 955912013}
 --- !u!50 &1010621606
 Rigidbody2D:
   serializedVersion: 4
@@ -7348,6 +7351,9 @@ MonoBehaviour:
   maxPower: 50
   maxSpeed: 4
   playerNo: 1
+  headSpriteRenderer: {fileID: 757081356}
+  hand1SpriteRenderer: {fileID: 1802426413}
+  hand2SpriteRenderer: {fileID: 1229430010}
 --- !u!50 &1383459039
 Rigidbody2D:
   serializedVersion: 4
@@ -10302,6 +10308,9 @@ MonoBehaviour:
   maxPower: 50
   maxSpeed: 4
   playerNo: 2
+  headSpriteRenderer: {fileID: 494615027}
+  hand1SpriteRenderer: {fileID: 676186278}
+  hand2SpriteRenderer: {fileID: 1945775679}
 --- !u!50 &1967058133
 Rigidbody2D:
   serializedVersion: 4
@@ -11062,6 +11071,9 @@ MonoBehaviour:
   maxPower: 50
   maxSpeed: 4
   playerNo: 3
+  headSpriteRenderer: {fileID: 20441181}
+  hand1SpriteRenderer: {fileID: 470144114}
+  hand2SpriteRenderer: {fileID: 1775252976}
 --- !u!50 &2118929917
 Rigidbody2D:
   serializedVersion: 4
