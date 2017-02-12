@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HoleItemInteraction : Interaction {
+    public GameController gameController;
 
 	void Start () {
 	}
@@ -19,5 +20,14 @@ public class HoleItemInteraction : Interaction {
 
     public override bool CanInteractWith(CharacterItemInteraction player, ItemInteraction item) {
         return (item != null && item.hasAllColors());
+    }
+
+    public bool ScoreItem(CharacterItemInteraction player, ItemInteraction item) {
+        if (item != null && item.hasAllColors()) {
+            DestroyObject(item.gameObject);
+            gameController.addPoint();
+            return true;
+        }
+        return false;
     }
 }

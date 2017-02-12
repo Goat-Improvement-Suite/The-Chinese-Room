@@ -16,6 +16,7 @@ public class CharacterItemInteraction : Interaction {
 
     internal int playerNo;
     public GameColor color;
+    public Transform holdPoint;
 
     protected GameObject interactingWith;
     protected ItemInteraction holding;
@@ -43,29 +44,16 @@ public class CharacterItemInteraction : Interaction {
     public override void Unhighlight(GameObject player) { }
 
     private Collider2D FindHotInteraction() {
-        Collider2D result = null;
-        if (holding) {
-            LayerMask[] masks = new LayerMask[] { playerLayerMask, machineLayerMask, deskLayerMask, holeLayerMask, binLayerMask };
-            foreach (LayerMask mask in masks) {
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactionRadius, mask);
-                foreach (Collider2D collider in colliders) {
-                    if (collider && collider.GetComponent<Interaction>().CanInteractWith(this, holding)) {
-                        result = collider;
-                        break;
-                    } else {
-                        result = null;
-                    }
+        LayerMask[] masks = new LayerMask[] { itemLayerMask, playerLayerMask, machineLayerMask, deskLayerMask, holeLayerMask, binLayerMask };
+        foreach (LayerMask mask in masks) {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactionRadius, mask);
+            foreach (Collider2D collider in colliders) {
+                if (collider.GetComponent<Interaction>().CanInteractWith(this, holding)) {
+                    return collider;
                 }
             }
-        } else {
-            Collider2D collider = Physics2D.OverlapCircle(transform.position, interactionRadius, itemLayerMask);
-            if (collider && collider.GetComponent<Interaction>().CanInteractWith(this, holding)) {
-                result = collider;
-            } else {
-                result = null;
-            }
         }
-        return result;
+        return null;
     }
 
     void Update() {
@@ -114,6 +102,26 @@ public class CharacterItemInteraction : Interaction {
                         }
                     }
                 }
+                else if (collider.GetComponent<TableItemInteraction>()) {
+                    // Could put item on table slot
+                    if (Input.GetButtonDown("Interact_" + playerNo)) {
+                        if (holding) {
+                            if (collider.GetComponent<TableItemInteraction>().ReceiveItem(this, holding)) {
+                                holding = null;
+                            }
+                            else {
+                                // This should not happen
+                                Debug.Log("Warning: Could not put item on table");
+                            }
+                        }
+                        else {
+                            if (!collider.GetComponent<TableItemInteraction>().GiveItem(this, holding)) {
+                                // This should not happen
+                                Debug.Log("Warning: Could not pick item up from table");
+                            }
+                        }
+                    }
+                }
                 else if (collider.GetComponent<MachineItemInteraction>()) {
                     // Could process an item in a machine
                     if (Input.GetButtonDown("Interact_" + playerNo)) {
@@ -133,29 +141,41 @@ public class CharacterItemInteraction : Interaction {
                             Debug.Log("Warning: Wasn't holding an item what I should be");
                         }
                     }
-                } else if (collider.GetComponent<BinItemInteraction>()) {
+                }
+                else if (collider.GetComponent<BinItemInteraction>()) {
                     // Could pick up an item
                     if (Input.GetButtonDown("Interact_" + playerNo)) {
                         if (holding) {
                             collider.GetComponent<BinItemInteraction>().DestroyItem(this, holding);
                             holding = null;
-                        }
-                        else {
+                        } else {
                             // This should not happen
-                            Debug.Log("Warning: Wasn't holding an item what I should be");
+                            Debug.Log("Warning: Wasn't holding an item when I should be");
+                        }
+                    }
+                } else if (collider.GetComponent<HoleItemInteraction>()) {
+                    // Could score a complete item
+                    if (Input.GetButtonDown("Interact_" + playerNo)) {
+                        if (holding) {
+                            if (collider.GetComponent<HoleItemInteraction>().ScoreItem(this, holding)) {
+                                holding = null;
+                            }
+                        } else {
+                            // This should not happen
+                            Debug.Log("Warning: Wasn't holding an item when I should be");
                         }
                     }
                 } else if (collider.GetComponent<ItemInteraction>()) {
                     // Could pick up an item
                     if (Input.GetButtonDown("Interact_" + playerNo)) {
                         if (!holding) {
-                            holding = collider.GetComponent<ItemInteraction>();
-                            KillItemPhysics(holding);
-                            holding.MarkAsHeldBy(gameObject);
-                            collider.transform.parent = transform;
+                            if (!ReceiveItem(null, collider.GetComponent<ItemInteraction>())) {
+                                // This should not happen
+                                Debug.Log("Warning: Couldn't pick up item (already holding one?)");
+                            }
                         } else {
                             // This should not happen
-                            Debug.Log("Warning: Wasn't holding an item what I should be");
+                            Debug.Log("Warning: Was holding an item when I shouldn't be");
                         }
                     }
                 }
@@ -167,17 +187,19 @@ public class CharacterItemInteraction : Interaction {
         return (holding == null && item != null);
     }
 
-    internal bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
+    public bool ReceiveItem(CharacterItemInteraction playerItemInteraction, ItemInteraction itemInteraction) {
         if (!holding) {
             holding = itemInteraction;
             KillItemPhysics(holding);
+            holding.MarkAsHeldBy(gameObject);
             holding.transform.parent = transform;
+            holding.transform.position = holdPoint.position;
             return true;
         }
         return false;
     }
 
-    internal void ProcessingComplete(ItemInteraction item) {
+    public void ProcessingComplete(ItemInteraction item) {
         interactingWith = null;
         movement.StopIgnoringInput();
         holding = item;
