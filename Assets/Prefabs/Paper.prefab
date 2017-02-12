@@ -271,6 +271,11 @@ MonoBehaviour:
   green: 0
   red: 0
   yellow: 0
+  outlineSpriteRenderer: {fileID: 212291122604183894}
+  blueSymbolSpriteRenderer: {fileID: 212934163024183530}
+  greenSymbolSpriteRenderer: {fileID: 212105671908344354}
+  redSymbolSpriteRenderer: {fileID: 212737381336667280}
+  yellowSymbolSpriteRenderer: {fileID: 212291277980947082}
 --- !u!212 &212105671908344354
 SpriteRenderer:
   m_ObjectHideFlags: 1
