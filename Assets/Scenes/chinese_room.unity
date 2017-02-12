@@ -396,6 +396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 1
+  allowAnyPlayerPickup: 1
+  allowAnyPlayerPutdown: 0
 --- !u!1 &129065646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,6 +1148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 0
+  allowAnyPlayerPickup: 1
+  allowAnyPlayerPutdown: 0
 --- !u!1 &293553763
 GameObject:
   m_ObjectHideFlags: 0
@@ -4198,6 +4202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 2
+  allowAnyPlayerPickup: 1
+  allowAnyPlayerPutdown: 0
 --- !u!1 &946820015
 GameObject:
   m_ObjectHideFlags: 0
@@ -7267,6 +7273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 0
+  allowAnyPlayerPickup: 1
+  allowAnyPlayerPutdown: 0
 --- !u!1 &1420184178
 GameObject:
   m_ObjectHideFlags: 0
@@ -8319,6 +8327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 3
+  allowAnyPlayerPickup: 1
+  allowAnyPlayerPutdown: 0
 --- !u!114 &1700587471 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114525241694703246, guid: 87784b70be32b8c4b9f77f0f2bc70734,
@@ -8565,6 +8575,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 2
+  allowAnyPlayerPickup: 1
+  allowAnyPlayerPutdown: 0
 --- !u!1 &1803186173
 GameObject:
   m_ObjectHideFlags: 0
@@ -9125,6 +9137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 1
+  allowAnyPlayerPickup: 1
+  allowAnyPlayerPutdown: 0
 --- !u!1 &1939218952
 GameObject:
   m_ObjectHideFlags: 0
@@ -9184,6 +9198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 3
+  allowAnyPlayerPickup: 1
+  allowAnyPlayerPutdown: 0
 --- !u!1001 &1939256171
 Prefab:
   m_ObjectHideFlags: 0
