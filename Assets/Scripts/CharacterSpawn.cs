@@ -7,5 +7,6 @@ public class CharacterSpawn : MonoBehaviour {
 
     public void Spawn() {
         transform.position = spawnPoint.position;
+        GetComponent<CharacterItemInteraction>().DestroyHolding();
     }
 }

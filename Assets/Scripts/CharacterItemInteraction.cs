@@ -210,4 +210,9 @@ public class CharacterItemInteraction : Interaction {
         item.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         item.GetComponent<Rigidbody2D>().angularVelocity = 0f;
     }
+
+    public void DestroyHolding() {
+        GameObject.Destroy(holding.gameObject);
+        holding = null;
+    }
 }

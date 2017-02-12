@@ -17,10 +17,15 @@ public class ItemInteraction : Interaction {
     public SpriteRenderer yellowSymbolSpriteRenderer;
 
     void Start() {
+        
     }
 
-    void Update () {	
-	}
+    void Update () {
+        blueSymbolSpriteRenderer.enabled = blue;
+        redSymbolSpriteRenderer.enabled = red;
+        greenSymbolSpriteRenderer.enabled = green;
+        yellowSymbolSpriteRenderer.enabled = yellow;
+    }
 
     public override void Highlight(GameObject player) {
         outlineSpriteRenderer.enabled = true;
