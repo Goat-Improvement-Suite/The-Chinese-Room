@@ -44,7 +44,7 @@ public class MachineItemInteraction : Interaction
 
     public override bool CanInteractWith(CharacterItemInteraction character, ItemInteraction item)
     {
-        return (character != null && character.color == color && currentItem != null && !currentItem.hasColor(color) && item == null);
+        return (character != null && character.color == color && currentItem != null && item == null);
     }
 
     public override void Highlight(GameObject player)
