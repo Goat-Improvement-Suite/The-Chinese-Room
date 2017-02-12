@@ -742,6 +742,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &143071701 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114372253410404302, guid: 9c936cad150137e43899b139321ea5db,
+    type: 2}
+  m_PrefabInternal: {fileID: 29802096}
+  m_Script: {fileID: 11500000, guid: c9ffe94e92706f141b02bcd9202c3a21, type: 3}
 --- !u!1001 &187159341
 Prefab:
   m_ObjectHideFlags: 0
@@ -885,6 +891,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4453251926671364, guid: dbbe2451d526b444aa53152838d90768,
     type: 2}
   m_PrefabInternal: {fileID: 2082470230}
+--- !u!114 &226044767 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114372253410404302, guid: 9c936cad150137e43899b139321ea5db,
+    type: 2}
+  m_PrefabInternal: {fileID: 622193118}
+  m_Script: {fileID: 11500000, guid: c9ffe94e92706f141b02bcd9202c3a21, type: 3}
 --- !u!1 &238310480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1043,7 @@ GameObject:
   - component: {fileID: 288103874}
   - component: {fileID: 288103873}
   - component: {fileID: 288103875}
+  - component: {fileID: 288103876}
   m_Layer: 10
   m_Name: RedMachine
   m_TagString: Untagged
@@ -1170,6 +1183,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &288103876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 288103871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f65982cfd554b1409e3d21d38d4dcdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machineBacks:
+  - {fileID: 495237301}
+  machineFrames:
+  - {fileID: 129065648}
+  inputConveyer: {fileID: 1843101320}
+  outputConveyer: {fileID: 1581918475}
+  redMachineBack: {fileID: 21300000, guid: 5b2fafaf806f42e46af6042c0613671a, type: 3}
+  blueMachineBack: {fileID: 21300000, guid: 0ea6ab298851b9e479434bce23ca0e75, type: 3}
+  greenMachineBack: {fileID: 21300000, guid: 8efacf7236aebf24caabe31d1e09fddd, type: 3}
+  yellowMachineBack: {fileID: 21300000, guid: 1c956787325746d4f8ed8f17d196260c, type: 3}
+  redMachineFrame: {fileID: 21300000, guid: a1a800b07ba92e240a6fda59676ee968, type: 3}
+  blueMachineFrame: {fileID: 21300000, guid: b35a1136f1bf307499744b32457f2df1, type: 3}
+  greenMachineFrame: {fileID: 21300000, guid: d7877adbb481ef04f930f6c6192979f1, type: 3}
+  yellowMachineFrame: {fileID: 21300000, guid: 654e2b383150c654aa20d197a261a334, type: 3}
 --- !u!1 &291076136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,6 +1639,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floor: {fileID: 1755434017}
   wall: {fileID: 2025347639}
+  topRightMachine: {fileID: 1407680326}
+  topLeftMachine: {fileID: 1000764589}
+  bottomLeftMachine: {fileID: 288103876}
+  bottomRightMachine: {fileID: 1163557063}
   walls:
   - {fileID: 21300000, guid: b6b1512661c1e104cae2b06acf618112, type: 3}
   - {fileID: 21300000, guid: ace8c95463e5290488cc942f80b1d201, type: 3}
@@ -5246,6 +5288,7 @@ GameObject:
   - component: {fileID: 1000764587}
   - component: {fileID: 1000764586}
   - component: {fileID: 1000764588}
+  - component: {fileID: 1000764589}
   m_Layer: 10
   m_Name: BlueMachine
   m_TagString: Untagged
@@ -5391,6 +5434,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1000764589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1000764584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f65982cfd554b1409e3d21d38d4dcdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machineBacks:
+  - {fileID: 1053542519}
+  - {fileID: 1856050576}
+  machineFrames:
+  - {fileID: 313715545}
+  - {fileID: 361177360}
+  inputConveyer: {fileID: 1369212174}
+  outputConveyer: {fileID: 1558770538}
+  redMachineBack: {fileID: 21300000, guid: 5b2fafaf806f42e46af6042c0613671a, type: 3}
+  blueMachineBack: {fileID: 21300000, guid: 0ea6ab298851b9e479434bce23ca0e75, type: 3}
+  greenMachineBack: {fileID: 21300000, guid: 8efacf7236aebf24caabe31d1e09fddd, type: 3}
+  yellowMachineBack: {fileID: 21300000, guid: 1c956787325746d4f8ed8f17d196260c, type: 3}
+  redMachineFrame: {fileID: 21300000, guid: a1a800b07ba92e240a6fda59676ee968, type: 3}
+  blueMachineFrame: {fileID: 21300000, guid: b35a1136f1bf307499744b32457f2df1, type: 3}
+  greenMachineFrame: {fileID: 21300000, guid: d7877adbb481ef04f930f6c6192979f1, type: 3}
+  yellowMachineFrame: {fileID: 21300000, guid: 654e2b383150c654aa20d197a261a334, type: 3}
 --- !u!1 &1005201453
 GameObject:
   m_ObjectHideFlags: 0
@@ -6454,6 +6524,7 @@ GameObject:
   - component: {fileID: 1163557060}
   - component: {fileID: 1163557062}
   - component: {fileID: 1163557061}
+  - component: {fileID: 1163557063}
   m_Layer: 10
   m_Name: YellowMachine
   m_TagString: Untagged
@@ -6603,6 +6674,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1163557063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1163557058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f65982cfd554b1409e3d21d38d4dcdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machineBacks:
+  - {fileID: 1782352439}
+  - {fileID: 1328375106}
+  - {fileID: 1999095508}
+  machineFrames:
+  - {fileID: 1207764616}
+  - {fileID: 1813908904}
+  - {fileID: 131235646}
+  inputConveyer: {fileID: 226044767}
+  outputConveyer: {fileID: 957512210}
+  redMachineBack: {fileID: 21300000, guid: 5b2fafaf806f42e46af6042c0613671a, type: 3}
+  blueMachineBack: {fileID: 21300000, guid: 0ea6ab298851b9e479434bce23ca0e75, type: 3}
+  greenMachineBack: {fileID: 21300000, guid: 8efacf7236aebf24caabe31d1e09fddd, type: 3}
+  yellowMachineBack: {fileID: 21300000, guid: 1c956787325746d4f8ed8f17d196260c, type: 3}
+  redMachineFrame: {fileID: 21300000, guid: a1a800b07ba92e240a6fda59676ee968, type: 3}
+  blueMachineFrame: {fileID: 21300000, guid: b35a1136f1bf307499744b32457f2df1, type: 3}
+  greenMachineFrame: {fileID: 21300000, guid: d7877adbb481ef04f930f6c6192979f1, type: 3}
+  yellowMachineFrame: {fileID: 21300000, guid: 654e2b383150c654aa20d197a261a334, type: 3}
 --- !u!1 &1173631760
 GameObject:
   m_ObjectHideFlags: 0
@@ -7526,6 +7626,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &1369212174 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114372253410404302, guid: 9c936cad150137e43899b139321ea5db,
+    type: 2}
+  m_PrefabInternal: {fileID: 1042087824}
+  m_Script: {fileID: 11500000, guid: c9ffe94e92706f141b02bcd9202c3a21, type: 3}
 --- !u!1 &1383459036
 GameObject:
   m_ObjectHideFlags: 0
@@ -7950,6 +8056,7 @@ GameObject:
   - component: {fileID: 1407680324}
   - component: {fileID: 1407680323}
   - component: {fileID: 1407680325}
+  - component: {fileID: 1407680326}
   m_Layer: 10
   m_Name: GreenMachine
   m_TagString: Untagged
@@ -8089,6 +8196,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1407680326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1407680321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f65982cfd554b1409e3d21d38d4dcdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machineBacks:
+  - {fileID: 1569117869}
+  machineFrames:
+  - {fileID: 902259977}
+  inputConveyer: {fileID: 143071701}
+  outputConveyer: {fileID: 1700587471}
+  redMachineBack: {fileID: 21300000, guid: 5b2fafaf806f42e46af6042c0613671a, type: 3}
+  blueMachineBack: {fileID: 21300000, guid: 0ea6ab298851b9e479434bce23ca0e75, type: 3}
+  greenMachineBack: {fileID: 21300000, guid: 8efacf7236aebf24caabe31d1e09fddd, type: 3}
+  yellowMachineBack: {fileID: 21300000, guid: 1c956787325746d4f8ed8f17d196260c, type: 3}
+  redMachineFrame: {fileID: 21300000, guid: a1a800b07ba92e240a6fda59676ee968, type: 3}
+  blueMachineFrame: {fileID: 21300000, guid: b35a1136f1bf307499744b32457f2df1, type: 3}
+  greenMachineFrame: {fileID: 21300000, guid: d7877adbb481ef04f930f6c6192979f1, type: 3}
+  yellowMachineFrame: {fileID: 21300000, guid: 654e2b383150c654aa20d197a261a334, type: 3}
 --- !u!1 &1414524515
 GameObject:
   m_ObjectHideFlags: 0
@@ -9851,6 +9983,12 @@ Transform:
   m_Father: {fileID: 1447124373}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1843101320 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114372253410404302, guid: 9c936cad150137e43899b139321ea5db,
+    type: 2}
+  m_PrefabInternal: {fileID: 1939256171}
+  m_Script: {fileID: 11500000, guid: c9ffe94e92706f141b02bcd9202c3a21, type: 3}
 --- !u!1 &1844977020
 GameObject:
   m_ObjectHideFlags: 0
