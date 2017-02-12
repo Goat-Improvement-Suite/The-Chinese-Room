@@ -29,7 +29,9 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timeRemaining -= Time.deltaTime;
+        if (score >= 2) {
+            timeRemaining -= Time.deltaTime;
+        }
         if (timeRemaining <= 0) {
             audioController.StopPanic();
             endGame();
@@ -61,6 +63,8 @@ public class GameController : MonoBehaviour {
         return score;
     }
     public void addPoint() {
+        timeRemaining += 5;
+        timeRemaining = Mathf.Clamp(timeRemaining, 0, totalTime);
         score += 1;
     }
 

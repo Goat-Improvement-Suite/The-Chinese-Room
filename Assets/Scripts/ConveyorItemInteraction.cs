@@ -40,13 +40,32 @@ public class ConveyorItemInteraction : MonoBehaviour {
          UpdateBearings();*/
 
         time++;
-        bool doSpawn = (GameObject.FindGameObjectsWithTag("Paper").Length < gameController.getScore())
-                       && (time > period);
+        bool spawnWithAllColors = false;
+        bool doSpawn = false;
+        int numberOfPapers = GameObject.FindGameObjectsWithTag("Paper").Length;
+        if (numberOfPapers == 0 && gameController.getScore() == 0) {
+            doSpawn = true;
+            spawnWithAllColors = true;
+        }
+        if (numberOfPapers < gameController.getScore()) {
+            doSpawn = true;
+        }
+        if (doSpawn && time <= period) {
+            doSpawn = false;
+        }
+
         if (doSpawn) {
             time = 0;
             //generate new item
             Transform t1 = Instantiate(item, new Vector3(x, y, 0), Quaternion.identity);
-            t1.GetComponent<Rigidbody2D>().AddForce(movement);            
+            t1.GetComponent<Rigidbody2D>().AddForce(movement);
+            if (spawnWithAllColors) {
+                var item = t1.GetComponent<ItemInteraction>();
+                item.red = true;
+                item.green = true;
+                item.blue = true;
+                item.yellow = true;
+            }
         }
     }
 
