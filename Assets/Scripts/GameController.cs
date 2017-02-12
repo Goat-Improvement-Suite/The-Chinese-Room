@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     [SerializeField] private int score;
+    public const float totalTime = 120f;
     private float timeRemaining;
     public GameObject scoreText;
     public GameObject timeText;
@@ -15,12 +16,15 @@ public class GameController : MonoBehaviour {
     private GameObject ingameCanvas;
     [SerializeField]
     private GameObject endgameCanvas;
+    private ColorManager manager;
+    public GameObject Cmanager;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         score = 0;
-        timeRemaining = 120f;
+        timeRemaining = totalTime;
         audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
+        manager = Cmanager.GetComponent<ColorManager>();
 	}
 	
 	// Update is called once per frame
@@ -32,7 +36,22 @@ public class GameController : MonoBehaviour {
         } else if (timeRemaining <= 20) {
             audioController.StartPanic();
         }
-
+        if (timeRemaining>totalTime*4f/5)
+        {
+            manager.setCurrent(3);
+        }
+        else if (timeRemaining > totalTime * 3f / 5)
+        {
+            manager.setCurrent(2);
+        }
+        else if (timeRemaining > totalTime * 2f / 5)
+        {
+            manager.setCurrent(1);
+        }
+        else if (timeRemaining > totalTime * 1f / 5)
+        {
+            manager.setCurrent(0);
+        }
         scoreText.GetComponent<Text>().text = score.ToString();
         String fullTimeStr = TimeSpan.FromSeconds(timeRemaining).ToString();
         timeText.GetComponent<Text>().text = fullTimeStr.Remove(fullTimeStr.Length - 4).Substring(3);
