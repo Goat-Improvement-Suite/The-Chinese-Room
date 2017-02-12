@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     [SerializeField] private int score;
-    public const float totalTime = 120f;
+    public const float totalTime = 240f;
     private float timeRemaining;
     public GameObject scoreText;
     public GameObject timeText;
