@@ -16,6 +16,7 @@ public class CharacterItemInteraction : Interaction {
 
     internal int playerNo;
     public GameColor color;
+    public Transform holdPoint;
 
     protected GameObject interactingWith;
     protected ItemInteraction holding;
@@ -148,20 +149,20 @@ public class CharacterItemInteraction : Interaction {
                         }
                         else {
                             // This should not happen
-                            Debug.Log("Warning: Wasn't holding an item what I should be");
+                            Debug.Log("Warning: Wasn't holding an item when I should be");
                         }
                     }
                 } else if (collider.GetComponent<ItemInteraction>()) {
                     // Could pick up an item
                     if (Input.GetButtonDown("Interact_" + playerNo)) {
                         if (!holding) {
-                            holding = collider.GetComponent<ItemInteraction>();
-                            KillItemPhysics(holding);
-                            holding.MarkAsHeldBy(gameObject);
-                            collider.transform.parent = transform;
+                            if (!ReceiveItem(null, collider.GetComponent<ItemInteraction>())) {
+                                // This should not happen
+                                Debug.Log("Warning: Couldn't pick up item (already holding one?)");
+                            }
                         } else {
                             // This should not happen
-                            Debug.Log("Warning: Wasn't holding an item what I should be");
+                            Debug.Log("Warning: Was holding an item when I shouldn't be");
                         }
                     }
                 }
@@ -177,7 +178,9 @@ public class CharacterItemInteraction : Interaction {
         if (!holding) {
             holding = itemInteraction;
             KillItemPhysics(holding);
+            holding.MarkAsHeldBy(gameObject);
             holding.transform.parent = transform;
+            holding.transform.position = holdPoint.position;
             return true;
         }
         return false;
